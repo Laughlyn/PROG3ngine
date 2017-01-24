@@ -6,7 +6,7 @@ const int SCREEN_HEIGHT = 768;
 
 const bool V_SYNC = false;
 
-const int SCREEN_FPS = 60;
+const int SCREEN_FPS = 144;
 const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
 
 //Key press surfaces constants
@@ -21,6 +21,7 @@ enum KeyPressSurfaces
 };
 
 const float gravity = 9.8f;
+const float PI = 3.14159265359f;
 
 const int BUTTON_WIDTH = 100;
 const int BUTTON_HEIGHT = 100;

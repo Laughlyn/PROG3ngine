@@ -1,8 +1,9 @@
 #pragma once
 #ifndef SCENE_H
 #define SCENE_H
-#include <vector>
+#include <list>
 #include "GameObject.h"
+#include "Timer.h"
 
 class Scene
 {
@@ -11,7 +12,9 @@ public:
 	void run();
 	~Scene();
 private:
-	std::vector<GameObject*> gObjects;
+	std::list<GameObject*> gObjects;
+	//The frames per second timer
+	Timer fpsTimer, capTimer, stepTimer;
 };
 
 #endif
