@@ -73,8 +73,8 @@
     <LibraryPath>..\vs_dev_lib\SDL2_mixer-2.0.1\lib\x86;..\vs_dev_lib\SDL2_image-2.0.1\lib\x86;..\vs_dev_lib\SDL2_ttf-2.0.14\lib\x86;..\vs_dev_lib\SDL2-2.0.5\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\Zwei Zwei\Source\Repos\PROG3ngine\PROG3ngine\vs_dev_lib\SDL2-2.0.5\include;C:\Users\Zwei Zwei\Source\Repos\PROG3ngine\PROG3ngine\vs_dev_lib\SDL2_ttf-2.0.14\include;C:\Users\Zwei Zwei\Source\Repos\PROG3ngine\PROG3ngine\vs_dev_lib\SDL2_mixer-2.0.1\include;C:\Users\Zwei Zwei\Source\Repos\PROG3ngine\PROG3ngine\vs_dev_lib\SDL2_image-2.0.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Zwei Zwei\Source\Repos\PROG3ngine\PROG3ngine\vs_dev_lib\SDL2-2.0.5\lib\x86;C:\Users\Zwei Zwei\Source\Repos\PROG3ngine\PROG3ngine\vs_dev_lib\SDL2_ttf-2.0.14\lib\x86;C:\Users\Zwei Zwei\Source\Repos\PROG3ngine\PROG3ngine\vs_dev_lib\SDL2_mixer-2.0.1\lib\x86;C:\Users\Zwei Zwei\Source\Repos\PROG3ngine\PROG3ngine\vs_dev_lib\SDL2_image-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\vs_dev_lib\SDL2-2.0.5\include;..\vs_dev_lib\SDL2_ttf-2.0.14\include;..\vs_dev_lib\SDL2_mixer-2.0.1\include;..\vs_dev_lib\SDL2_image-2.0.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\vs_dev_lib\SDL2-2.0.5\lib\x86;..\vs_dev_lib\SDL2_ttf-2.0.14\lib\x86;..\vs_dev_lib\SDL2_mixer-2.0.1\lib\x86;..\vs_dev_lib\SDL2_image-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
