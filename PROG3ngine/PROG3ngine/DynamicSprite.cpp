@@ -24,7 +24,8 @@ void DynamicSprite::tick(float timeStep)
 	dirVectX = cos(radians);
 	dirVectY = sin(radians);
 
-	velY += 1000 * timeStep;
+	// "Gravity"
+	//velY += 1000 * timeStep;
 
 	velX += accelX * timeStep;
 	velY += accelY * timeStep;

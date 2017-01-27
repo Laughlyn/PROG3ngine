@@ -33,7 +33,7 @@ class Laser : public DynamicSprite
 public:
 	Laser(const SDL_Rect& r, std::string t) :DynamicSprite(r, t)
 	{
-		velY = -1000.f;
+		velX = 1000.f;
 	}
 	void Laser::tick(float timeStep) override
 	{
@@ -66,8 +66,18 @@ public:
 				break;
 			case SDLK_DOWN:		accelY = 1000.f;
 				break;
-			case SDLK_SPACE:	GameObject* laser = new Laser({ getRect().x, getRect().y, 9, 54 }, "laserBlue01.png");
-								myScene->add(laser);
+			case SDLK_SPACE:	if (right)
+								{
+									GameObject* laser = new Laser({ getRect().x + 10, getRect().y + 99, 54, 9 }, "laserBlue01.png");
+									myScene->add(laser);
+									right = false;
+								}
+								else 
+								{
+									GameObject* laser = new Laser({ getRect().x + 10, getRect().y, 54, 9 }, "laserBlue01.png");
+									myScene->add(laser);
+									right = true;
+								}
 				break;
 			}
 		}
@@ -93,20 +103,21 @@ public:
 	}
 private:
 	Scene* myScene;
+	bool right = true;
 };
 
 int main(int argc, char** argsv)
 {
 	Scene menu;
 	Scene * menup = &menu;
-	GameObject* player = new PlayerShip({ 300, 300, 99, 75 }, "playerShip1_blue.png", menup);
-	menu.add(player);
 	Label * lab = Label::getInstance({ 400, 100, 100, 100 }, "0");
 	menu.add(lab);
 	GameObject* button = new MyButton({ 100, 100 ,200 ,100 }, "Öka", lab);
 	menu.add(button);
 	GameObject* button2 = new MyButton({ 600, 100 ,200 ,100 }, "Minska", lab);
 	menu.add(button2);
+	GameObject* player = new PlayerShip({ 300, 300, 75, 99 }, "playerShip1_blue.png", menup);
+	menu.add(player);
 	menu.run();
 	return 0;
 }
