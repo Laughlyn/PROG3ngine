@@ -24,6 +24,8 @@ void DynamicSprite::tick(float timeStep)
 	dirVectX = cos(radians);
 	dirVectY = sin(radians);
 
+	velY += 1000 * timeStep;
+
 	velX += accelX * timeStep;
 	velY += accelY * timeStep;
 
@@ -58,55 +60,3 @@ void DynamicSprite::mouseUp(const SDL_Event& event)
 {
 
 }
-
-
-//Version 1
-
-//void DynamicSprite::tick(float timeStep)
-//{
-//	//Move
-//	posX += (timeStep*speed)*(cos(angle*PI / 180));
-//	if (posX < 0 || posX > SCREEN_WIDTH - rect.w)
-//	{
-//		angle = 180 - angle;
-//	}
-//	else
-//	{
-//		rect.x = int(posX);
-//	}
-//
-//	posY += (timeStep*speed)*(sin(angle*PI / 180));
-//	if (posY < 0 || posY > SCREEN_HEIGHT - rect.h)
-//	{
-//		angle = 360 - angle;
-//	}
-//	else
-//	{
-//		rect.y = int(posY);
-//	}
-//}
-
-//Version 2
-//void DynamicSprite::tick(float timeStep)
-//{
-//	//Move
-//	posX += (timeStep*speed)*(cos(angle*PI / 180));
-//	if (posX < 0 || posX > SCREEN_WIDTH - rect.w)
-//	{
-//		angle = 180 - angle;
-//	}
-//	else
-//	{
-//		rect.x = int(posX);
-//	}
-//
-//	posY += (timeStep*speed)*(sin(angle*PI / 180));
-//	if (posY < 0 || posY > SCREEN_HEIGHT - rect.h)
-//	{
-//		angle = 360 - angle;
-//	}
-//	else
-//	{
-//		rect.y = int(posY);
-//	}
-//}

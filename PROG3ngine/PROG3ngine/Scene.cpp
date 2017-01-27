@@ -5,16 +5,6 @@
 #include "DynamicSprite.h"
 #include "GameObject.h"
 
-class Laser : public DynamicSprite
-{
-public:
-	Laser(const SDL_Rect& r, std::string t) :DynamicSprite(r, t)
-	{
-		velY = -1000;
-	}
-};
-
-
 void Scene::add(GameObject* gObject)
 {
 	gObjects.push_back(gObject);
@@ -64,11 +54,6 @@ void Scene::run()
 			}
 			if (event.type == SDL_KEYDOWN)
 			{
-
-				Laser* laser = new Laser({300, 300, 9, 54}, "laserBlue01.png");
-
-				gObjects.push_back(laser);
-
 				for (auto gO : gObjects)
 				{
 					gO->keyDown(event);

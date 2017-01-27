@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "Sprite.h"
 #include "DynamicSprite.h"
+#include "GameObject.h"
 
 int value = 0;
 
@@ -32,40 +33,46 @@ class Laser : public DynamicSprite
 public:
 	Laser(const SDL_Rect& r, std::string t) :DynamicSprite(r, t)
 	{
-		velY = -1000;
+		velY = -1000.f;
 	}
-	
-	void Laser::tick(float timeStep)
+	void Laser::tick(float timeStep) override
 	{
+		velX += accelX * timeStep;
+		velY += accelY * timeStep;
 
+		posX += velX * timeStep;
+		rect.x = int(posX);
+
+		posY += velY * timeStep;
+		rect.y = int(posY);
 	}
 };
 
 class PlayerShip : public DynamicSprite {
 public:
 	PlayerShip(const SDL_Rect& r, std::string t) :DynamicSprite(r, t) {}
-
-	void PlayerShip::keyDown(const SDL_Event& event)
+	PlayerShip(const SDL_Rect& r, std::string t, Scene* s) :DynamicSprite(r, t), myScene(s) {}
+	void PlayerShip::keyDown(const SDL_Event& event) override
 	{
 		if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
 		{
 			switch (event.key.keysym.sym)
 			{
-			case SDLK_UP:		accelY = -1000;
+			case SDLK_UP:		accelY = -2000.f;
 				break;
-			case SDLK_RIGHT:	accelX = 1000;
+			case SDLK_RIGHT:	accelX = 1000.f;
 				break;
-			case SDLK_LEFT:		accelX = -1000;
+			case SDLK_LEFT:		accelX = -1000.f;
 				break;
-			case SDLK_DOWN:		accelY = 1000;
+			case SDLK_DOWN:		accelY = 1000.f;
 				break;
-			case SDLK_SPACE:	
+			case SDLK_SPACE:	GameObject* laser = new Laser({ getRect().x, getRect().y, 9, 54 }, "laserBlue01.png");
+								myScene->add(laser);
 				break;
 			}
 		}
 	}
-
-	void PlayerShip::keyUp(const SDL_Event & event)
+	void PlayerShip::keyUp(const SDL_Event & event) override
 	{
 		if (event.type == SDL_KEYUP)
 		{
@@ -84,12 +91,15 @@ public:
 			}
 		}
 	}
+private:
+	Scene* myScene;
 };
 
 int main(int argc, char** argsv)
 {
 	Scene menu;
-	GameObject* player = new PlayerShip({ 300, 300, 99, 75 }, "playerShip1_blue.png");
+	Scene * menup = &menu;
+	GameObject* player = new PlayerShip({ 300, 300, 99, 75 }, "playerShip1_blue.png", menup);
 	menu.add(player);
 	Label * lab = Label::getInstance({ 400, 100, 100, 100 }, "0");
 	menu.add(lab);
