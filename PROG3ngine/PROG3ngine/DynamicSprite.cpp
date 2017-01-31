@@ -21,12 +21,11 @@ void DynamicSprite::draw()
 
 void DynamicSprite::tick(float timeStep)
 {
-	dirVectX = cos(radians);
-	dirVectY = sin(radians);
+	move(timeStep);
+}
 
-	// "Gravity"
-	//velY += 1000 * timeStep;
-
+void DynamicSprite::move(float timeStep)
+{
 	velX += accelX * timeStep;
 	velY += accelY * timeStep;
 
@@ -36,20 +35,6 @@ void DynamicSprite::tick(float timeStep)
 
 	posY += velY * timeStep;
 	rect.y = int(posY);
-
-	//Friction
-	velX *= 0.99f;
-	velY *= 0.99f;
-
-	//Bounds
-	if (radians > PI)
-	{
-		radians = -PI;
-	}
-	else if (radians < -PI)
-	{
-		radians = PI;
-	}
 }
 
 void DynamicSprite::mouseDown(const SDL_Event& event)

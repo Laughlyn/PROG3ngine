@@ -7,7 +7,8 @@ class PhysicsSprite :
 {
 public:
 	PhysicsSprite(const SDL_Rect r, std::string t);
-	void tick(int timeStep);
+	void tick(float timeStep);
+	void physics(float timeStep);
 	~PhysicsSprite();
 };
 

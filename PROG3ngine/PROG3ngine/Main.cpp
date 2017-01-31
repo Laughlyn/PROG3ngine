@@ -6,6 +6,7 @@
 #include "Sprite.h"
 #include "DynamicSprite.h"
 #include "GameObject.h"
+#include "PhysicsSprite.h"
 
 int value = 0;
 
@@ -35,17 +36,6 @@ public:
 	{
 		velX = 1000.f;
 	}
-	void Laser::tick(float timeStep) override
-	{
-		velX += accelX * timeStep;
-		velY += accelY * timeStep;
-
-		posX += velX * timeStep;
-		rect.x = int(posX);
-
-		posY += velY * timeStep;
-		rect.y = int(posY);
-	}
 };
 
 class PlayerShip : public DynamicSprite {
@@ -58,17 +48,17 @@ public:
 		{
 			switch (event.key.keysym.sym)
 			{
-			case SDLK_UP:		accelY = -2000.f;
+			case SDLK_w:		velY = -500.f;
 				break;
-			case SDLK_RIGHT:	accelX = 1000.f;
+			case SDLK_d:		velX = 500.f;
 				break;
-			case SDLK_LEFT:		accelX = -1000.f;
+			case SDLK_a:		velX = -500.f;
 				break;
-			case SDLK_DOWN:		accelY = 1000.f;
+			case SDLK_s:		velY = 500.f;
 				break;
 			case SDLK_SPACE:	if (right)
 								{
-									GameObject* laser = new Laser({ getRect().x + 10, getRect().y + 99, 54, 9 }, "laserBlue01.png");
+									GameObject* laser = new Laser({ getRect().x + 10, getRect().y + 90, 54, 9 }, "laserBlue01.png");
 									myScene->add(laser);
 									right = false;
 								}
@@ -78,6 +68,9 @@ public:
 									myScene->add(laser);
 									right = true;
 								}
+
+								GameObject* player = new PhysicsSprite({ getRect().x + 75/2,  getRect().y + 99 / 2, 75/10, 99/10 }, "playerShip1_blue.png");
+								myScene->add(player);
 				break;
 			}
 		}
@@ -88,13 +81,13 @@ public:
 		{
 			switch (event.key.keysym.sym)
 			{
-			case SDLK_UP:		accelY = 0;
+			case SDLK_w:		velY = 0;
 				break;
-			case SDLK_RIGHT:	accelX = 0;
+			case SDLK_d:		velX = 0;
 				break;
-			case SDLK_LEFT:		accelX = 0;
+			case SDLK_a:		velX = 0;
 				break;
-			case SDLK_DOWN:		accelY = 0;
+			case SDLK_s:		velY = 0;
 				break;
 			case SDLK_SPACE:
 				break;
