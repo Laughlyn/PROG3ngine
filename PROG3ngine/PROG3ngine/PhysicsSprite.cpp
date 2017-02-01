@@ -11,6 +11,30 @@ void PhysicsSprite::tick(float timeStep)
 	physics(timeStep);
 }
 
+void PhysicsSprite::collision(float timeStep, GameObject* gO)
+{
+	if()
+	velX = 0;
+	velY = 0;
+}
+
+//void PhysicsSprite::move(float timeStep)
+//{
+//
+//	velX += accelX * timeStep;
+//	velY += accelY * timeStep;
+//
+//	//Move
+//	posX += velX * timeStep;
+//	rect.x = int(posX);
+//
+//
+//
+//	posY += velY * timeStep;
+//	rect.y = int(posY);
+//
+//}
+
 void PhysicsSprite::physics(float timeStep)
 {
 	// "Gravity"

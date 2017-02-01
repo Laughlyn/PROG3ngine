@@ -34,7 +34,7 @@ class Laser : public DynamicSprite
 public:
 	Laser(const SDL_Rect& r, std::string t) :DynamicSprite(r, t)
 	{
-		velX = 1000.f;
+		velX = 2000.f;
 	}
 };
 
@@ -48,7 +48,7 @@ public:
 		{
 			switch (event.key.keysym.sym)
 			{
-			case SDLK_w:		velY = -500.f;
+			case SDLK_w:		velY = -700.f;
 				break;
 			case SDLK_d:		velX = 500.f;
 				break;
@@ -56,25 +56,28 @@ public:
 				break;
 			case SDLK_s:		velY = 500.f;
 				break;
-			case SDLK_SPACE:	if (right)
+			case SDLK_SPACE:	
+								
+								if (right)
 								{
-									GameObject* laser = new Laser({ getRect().x + 10, getRect().y + 90, 54, 9 }, "laserBlue01.png");
+									GameObject* laser = new Laser({ getRect().x + 20, getRect().y + 109, 54, 9 }, "laserBlue01.png");
 									myScene->add(laser);
 									right = false;
 								}
 								else 
 								{
-									GameObject* laser = new Laser({ getRect().x + 10, getRect().y, 54, 9 }, "laserBlue01.png");
+									GameObject* laser = new Laser({ getRect().x + 20, getRect().y - 10, 54, 9 }, "laserBlue01.png");
 									myScene->add(laser);
 									right = true;
 								}
 
-								GameObject* player = new PhysicsSprite({ getRect().x + 75/2,  getRect().y + 99 / 2, 75/10, 99/10 }, "playerShip1_blue.png");
-								myScene->add(player);
+								GameObject* ship = new PhysicsSprite({ getRect().x - 80/10,  getRect().y + 99 / 2, 75/10, 99/10 }, "playerShip1_blue.png");
+								myScene->add(ship);
 				break;
 			}
 		}
 	}
+
 	void PlayerShip::keyUp(const SDL_Event & event) override
 	{
 		if (event.type == SDL_KEYUP)

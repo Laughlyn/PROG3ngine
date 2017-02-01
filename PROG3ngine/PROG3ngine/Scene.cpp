@@ -23,7 +23,7 @@ void Scene::run()
 	{
 		//Start cap timer
 		capTimer.start();
-		
+
 		//Calculate and correct fps
 		float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
 		if (avgFPS > 2000000)
@@ -79,6 +79,17 @@ void Scene::run()
 		for (GameObject* gO : gObjects)
 		{
 			gO->tick(timeStep);
+
+			for (GameObject* gO2 : gObjects)
+			{
+				if (gO != gO2)
+				{
+					if (checkCollision(gO->getRect(), gO2->getRect()))
+					{
+						gO->collision(timeStep, gO2);
+					}
+				}
+			}
 			gO->draw();
 		}
 
@@ -87,7 +98,7 @@ void Scene::run()
 
 		while (i != gObjects.end())
 		{
-			if ((*i)->getRect().y < -100)
+			if ((*i)->getRect().y < -100 || (*i)->getRect().x < -100 || (*i)->getRect().x > SCREEN_WIDTH + 100 || (*i)->getRect().y > SCREEN_HEIGHT + 100)
 			{
 				i = gObjects.erase(i);
 			}
@@ -113,6 +124,44 @@ void Scene::run()
 			SDL_Delay(SCREEN_TICKS_PER_FRAME - frameTicks);
 		}
 	}
+}
+
+//True if rects are colliding
+bool Scene::checkCollision(SDL_Rect a, SDL_Rect b)
+{
+	int leftA, rightA, topA, bottomA;
+	leftA = a.x;
+	rightA = a.x + a.w;
+	topA = a.y;
+	bottomA = a.y + a.h;
+
+	int leftB, rightB, topB, bottomB;
+	leftB = b.x;
+	rightB = b.x + b.w;
+	topB = b.y;
+	bottomB = b.y + b.h;
+
+	if (bottomA <= topB)
+	{
+		return false;
+	}
+
+	if (topA >= bottomB)
+	{
+		return false;
+	}
+
+	if (rightA <= leftB)
+	{
+		return false;
+	}
+
+	if (leftA >= rightB)
+	{
+		return false;
+	}
+
+	return true;
 }
 
 Scene::~Scene()

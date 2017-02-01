@@ -8,6 +8,7 @@ class GameObject
 public:
 	virtual void draw() = 0;
 	virtual void tick(float timeStep) {}
+	virtual void collision(float timeStep, GameObject*) {}
 	virtual ~GameObject();
 	virtual void mouseDown(const SDL_Event&) {}
 	virtual void mouseUp(const SDL_Event&) {}

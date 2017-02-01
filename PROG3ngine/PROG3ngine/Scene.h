@@ -10,6 +10,7 @@ class Scene
 public:
 	void add(GameObject* gObject);
 	void run();
+	bool checkCollision(SDL_Rect a, SDL_Rect b);
 	~Scene();
 private:
 	std::list<GameObject*> gObjects;
