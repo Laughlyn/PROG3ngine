@@ -13,7 +13,6 @@ void PhysicsSprite::tick(float timeStep)
 
 void PhysicsSprite::collision(float timeStep, GameObject* gO)
 {
-	if()
 	velX = 0;
 	velY = 0;
 }

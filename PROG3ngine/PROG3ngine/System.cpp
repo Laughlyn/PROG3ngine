@@ -1,10 +1,15 @@
 #pragma once
+#include "SDLAudio.h"
+#include "Locator.h"
 #include "Constants.h"
 #include "System.h"
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <stdexcept>
+#include <SDL_mixer.h>
+
+
 
 System::System()
 {
@@ -36,10 +41,17 @@ System::System()
 	{
 		throw std::runtime_error(std::string("Fontfel: ") + SDL_GetError());
 	}
+
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+	SDLAudio *audio = new SDLAudio();
+	Locator::provide(audio);
+
 }
 
 System::~System()
 {
+	Mix_CloseAudio();
+	Mix_Quit();
 	TTF_CloseFont(font);
 	TTF_Quit();
 	SDL_DestroyRenderer(ren);

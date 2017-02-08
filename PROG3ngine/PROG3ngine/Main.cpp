@@ -1,4 +1,7 @@
+
 #include <SDL.h>
+#include "Locator.h"
+#include "Audio.h"
 #include "System.h"
 #include "Scene.h"
 #include "Label.h"
@@ -7,6 +10,8 @@
 #include "DynamicSprite.h"
 #include "GameObject.h"
 #include "PhysicsSprite.h"
+
+
 
 int value = 0;
 
@@ -54,22 +59,33 @@ public:
 				break;
 			case SDLK_a:		velX = -500.f;
 				break;
-			case SDLK_s:		velY = 500.f;
+ 			case SDLK_s:		velY = 500.f;
 				break;
 			case SDLK_SPACE:	
-								
+								//Locate audio service
+								Audio* audio = Locator::getAudio();
 								if (right)
 								{
 									GameObject* laser = new Laser({ getRect().x + 20, getRect().y + 109, 54, 9 }, "laserBlue01.png");
 									myScene->add(laser);
+
+									//Play sound
+									audio->playSound(0);
+
 									right = false;
 								}
 								else 
 								{
 									GameObject* laser = new Laser({ getRect().x + 20, getRect().y - 10, 54, 9 }, "laserBlue01.png");
 									myScene->add(laser);
+
+									//Play sound
+									audio->playSound(1);
+
 									right = true;
 								}
+								
+								
 
 								GameObject* ship = new PhysicsSprite({ getRect().x - 80/10,  getRect().y + 99 / 2, 75/10, 99/10 }, "playerShip1_blue.png");
 								myScene->add(ship);
@@ -114,6 +130,12 @@ int main(int argc, char** argsv)
 	menu.add(button2);
 	GameObject* player = new PlayerShip({ 300, 300, 75, 99 }, "playerShip1_blue.png", menup);
 	menu.add(player);
+
+	//Load sounds
+	Audio* audio = Locator::getAudio();
+	audio->addSound("slimeball.wav");
+	audio->addSound("iceball.wav");
+
 	menu.run();
 	return 0;
 }
