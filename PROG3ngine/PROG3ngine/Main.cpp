@@ -57,7 +57,7 @@ public:
 				break;
 			case SDLK_d:		velX = 500.f;
 				break;
-			case SDLK_a:		velX = -500.f;
+			case SDLK_a:		velX = -400.f;
 				break;
  			case SDLK_s:		velY = 500.f;
 				break;
@@ -122,12 +122,15 @@ int main(int argc, char** argsv)
 {
 	Scene menu;
 	Scene * menup = &menu;
+
 	Label * lab = Label::getInstance({ 400, 100, 100, 100 }, "0");
 	menu.add(lab);
 	GameObject* button = new MyButton({ 100, 100 ,200 ,100 }, "Öka", lab);
 	menu.add(button);
+
 	GameObject* button2 = new MyButton({ 600, 100 ,200 ,100 }, "Minska", lab);
 	menu.add(button2);
+
 	GameObject* player = new PlayerShip({ 300, 300, 75, 99 }, "playerShip1_blue.png", menup);
 	menu.add(player);
 
