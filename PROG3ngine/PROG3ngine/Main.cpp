@@ -10,7 +10,7 @@
 #include "DynamicSprite.h"
 #include "GameObject.h"
 #include "PhysicsSprite.h"
-
+#include "AnimatedSprite.h"
 
 
 int value = 0;
@@ -123,8 +123,9 @@ int main(int argc, char** argsv)
 	Scene menu;
 	Scene * menup = &menu;
 
-	Label * lab = Label::getInstance({ 400, 100, 100, 100 }, "0");
+	Label* lab = Label::getInstance({ 400, 100, 100, 100 }, "0");
 	menu.add(lab);
+
 	GameObject* button = new MyButton({ 100, 100 ,200 ,100 }, "Öka", lab);
 	menu.add(button);
 
@@ -133,6 +134,9 @@ int main(int argc, char** argsv)
 
 	GameObject* player = new PlayerShip({ 300, 300, 75, 99 }, "playerShip1_blue.png", menup);
 	menu.add(player);
+
+	AnimatedSprite* ship2 = AnimatedSprite::getInstance({ 600, 600, 26, 12 }, "Gradius.png");
+	menu.add(ship2);
 
 	//Load sounds
 	Audio* audio = Locator::getAudio();

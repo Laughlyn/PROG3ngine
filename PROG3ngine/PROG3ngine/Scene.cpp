@@ -72,7 +72,7 @@ void Scene::run()
 		float timeStep = stepTimer.getTicks() / 1000.f;
 
 		//Clear screen
-		SDL_SetRenderDrawColor(sys.getRenderer(), 255, 255, 255, 0);
+		SDL_SetRenderDrawColor(sys.getRenderer(), 0, 0, 0, 0);
 		SDL_RenderClear(sys.getRenderer());
 
 		//Render all GameObjects in gObjects
@@ -80,6 +80,7 @@ void Scene::run()
 		{
 			gO->tick(timeStep);
 
+			//Check if object is colliding
 			for (GameObject* gO2 : gObjects)
 			{
 				if (gO != gO2)

@@ -13,26 +13,11 @@ void PhysicsSprite::tick(float timeStep)
 
 void PhysicsSprite::collision(float timeStep, GameObject* gO)
 {
-	velX = 0;
-	velY = 0;
+	tick(-timeStep);
+	gO->getRect();
+	//velX = 0;
+	//velY = 0;
 }
-
-//void PhysicsSprite::move(float timeStep)
-//{
-//
-//	velX += accelX * timeStep;
-//	velY += accelY * timeStep;
-//
-//	//Move
-//	posX += velX * timeStep;
-//	rect.x = int(posX);
-//
-//
-//
-//	posY += velY * timeStep;
-//	rect.y = int(posY);
-//
-//}
 
 void PhysicsSprite::physics(float timeStep)
 {
