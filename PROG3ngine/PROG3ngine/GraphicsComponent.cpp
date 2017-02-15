@@ -16,15 +16,15 @@ GraphicsComponent::GraphicsComponent(std::string path, SDL_Rect s, SDL_Rect d) :
 
 void GraphicsComponent::update(GameObject* gameObject)
 {
-	if (gameObject->yVel > 100)
+	if (gameObject->yVel > 500)
 	{
 		sRect = { 7+30, 100, 26, 15 };
 	}
-	if (gameObject->yVel < -100 )
+	if (gameObject->yVel < -500 )
 	{
 		sRect = { 7+30*2, 100, 26, 15 };
 	}
-	if (gameObject->yVel > -100 && gameObject->yVel < 100)
+	if (gameObject->yVel > -500 && gameObject->yVel < 500)
 	{
 		sRect = { 7, 100, 26, 15 };
 	}
