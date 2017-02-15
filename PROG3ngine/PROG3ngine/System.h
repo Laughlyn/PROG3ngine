@@ -1,9 +1,8 @@
 #pragma once
-#ifndef SYSTEM_H
-#define SYSTEM_H
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include "Timer.h"
+
 
 class System
 {
@@ -20,4 +19,3 @@ private:
 
 extern System sys;
 
-#endif

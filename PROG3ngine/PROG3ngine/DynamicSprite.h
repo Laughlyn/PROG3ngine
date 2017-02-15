@@ -9,7 +9,7 @@ class DynamicSprite :
 public:
 	static DynamicSprite* getInstance(const SDL_Rect& r, std::string t);
 	void draw();
-	void tick(float timeStep);
+	void update(float timeStep);
 	void move(float timeStep);
 //	void keyUp(const SDL_Event& event);
 //	void keyDown(const SDL_Event& event);

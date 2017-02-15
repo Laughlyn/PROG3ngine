@@ -1,26 +1,22 @@
 #pragma once
-#ifndef GAMEOBJECT_H
-#define GAMEOBJECT_H
-#include <SDL.h>
+#include "GraphicsComponent.h"
+#include "InputComponent.h"
+#include "Constants.h"
+
+class GraphicsComponent;
+class InputComponent;
 
 class GameObject
 {
 public:
-	virtual void draw() = 0;
-	virtual void tick(float timeStep) {}
-	virtual void collision(float timeStep, GameObject*) {}
-	virtual ~GameObject();
-	virtual void mouseDown(const SDL_Event&) {}
-	virtual void mouseUp(const SDL_Event&) {}
-	virtual void keyDown(const SDL_Event&) {}
-	virtual void keyUp(const SDL_Event&) {}
-	SDL_Rect getRect() { return rect; }
-	void setRect(SDL_Rect newRect) { rect = newRect; }
-protected:
-	GameObject(const SDL_Rect& r);
-	SDL_Rect rect;
+	float x = 0;
+	float y = 0;
+	float xVel = 0;
+	float yVel = 0;
+	void update(float timeStep);
+	GameObject(GraphicsComponent* graphics, InputComponent* input);
+	~GameObject();
 private:
-	GameObject(const GameObject&) = delete;
-	const GameObject& operator=(const GameObject&) = delete;
+	GraphicsComponent* graphics_;
+	InputComponent* input_;
 };
-#endif

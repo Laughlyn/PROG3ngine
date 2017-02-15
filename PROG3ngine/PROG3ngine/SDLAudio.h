@@ -1,5 +1,4 @@
-#ifndef SDLAUDIO_H
-#define SDLAUDIO_H
+#pragma once
 #include "Audio.h"
 #include <vector>
 #include <SDL_mixer.h>
@@ -18,4 +17,3 @@ private:
 	std::vector<Mix_Chunk*> sounds;
 };
 
-#endif

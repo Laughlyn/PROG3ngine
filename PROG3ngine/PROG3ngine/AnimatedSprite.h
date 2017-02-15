@@ -9,7 +9,7 @@ class AnimatedSprite :
 public:
 	static AnimatedSprite* getInstance(const SDL_Rect&, std::string);
 	static AnimatedSprite* getInstance(const SDL_Rect&, std::string, SDL_Rect);
-	void tick(float timeStep);
+	void update(float timeStep);
 	void draw();
 	~AnimatedSprite();
 private:

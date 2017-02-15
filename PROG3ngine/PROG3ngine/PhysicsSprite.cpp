@@ -5,7 +5,7 @@ PhysicsSprite::PhysicsSprite(const SDL_Rect r, std::string t) : DynamicSprite(r,
 
 }
 
-void PhysicsSprite::tick(float timeStep)
+void PhysicsSprite::update(float timeStep)
 {
 	move(timeStep);
 	physics(timeStep);
@@ -13,7 +13,7 @@ void PhysicsSprite::tick(float timeStep)
 
 void PhysicsSprite::collision(float timeStep, GameObject* gO)
 {
-	tick(-timeStep);
+	update(-timeStep);
 	gO->getRect();
 	//velX = 0;
 	//velY = 0;

@@ -31,7 +31,7 @@ void Timer::stop()
 	//Unpause the timer
 	mPaused = false;
 
-	//Clear tick variables
+	//Clear update variables
 	mStartTicks = 0;
 	mPausedTicks = 0;
 }

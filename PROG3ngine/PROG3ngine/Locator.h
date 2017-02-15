@@ -1,5 +1,4 @@
-#ifndef LOCATOR_H
-#define LOCATOR_H
+
 #include "Audio.h"
 
 class Locator
@@ -13,4 +12,3 @@ private:
 	static Audio* service_;
 };
 
-#endif

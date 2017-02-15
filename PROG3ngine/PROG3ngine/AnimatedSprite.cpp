@@ -20,7 +20,7 @@ AnimatedSprite::AnimatedSprite(const SDL_Rect& r, std::string t, SDL_Rect sC) : 
 	SDL_Rect myClip = sC;
 }
 
-void AnimatedSprite::tick(float timeStep)
+void AnimatedSprite::update(float timeStep)
 {
 
 }

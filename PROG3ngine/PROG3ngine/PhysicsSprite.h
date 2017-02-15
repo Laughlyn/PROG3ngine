@@ -7,7 +7,7 @@ class PhysicsSprite :
 {
 public:
 	PhysicsSprite(const SDL_Rect r, std::string t);
-	void tick(float timeStep);
+	void update(float timeStep);
 	//void move(float timeStep);
 	void collision(float timeStep, GameObject* gO);
 	void physics(float timeStep);

@@ -19,7 +19,7 @@ void DynamicSprite::draw()
 	SDL_RenderCopy(sys.getRenderer(), getTexture() , NULL, &getRect());
 }
 
-void DynamicSprite::tick(float timeStep)
+void DynamicSprite::update(float timeStep)
 {
 	move(timeStep);
 }

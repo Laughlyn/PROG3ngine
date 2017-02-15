@@ -1,9 +1,5 @@
 #include "Scene.h"
-#include <SDL.h>
-#include "System.h"
-#include "Constants.h"
-#include "DynamicSprite.h"
-#include "GameObject.h"
+
 
 void Scene::add(GameObject* gObject)
 {
@@ -38,7 +34,7 @@ void Scene::run()
 			{
 				quit = true;
 			}
-			if (event.type == SDL_MOUSEBUTTONDOWN)
+			/*if (event.type == SDL_MOUSEBUTTONDOWN)
 			{
 				for (auto gO : gObjects)
 				{
@@ -65,7 +61,7 @@ void Scene::run()
 				{
 					gO->keyUp(event);
 				}
-			}
+			}*/
 		}
 
 		//Calculate time step
@@ -78,36 +74,36 @@ void Scene::run()
 		//Render all GameObjects in gObjects
 		for (GameObject* gO : gObjects)
 		{
-			gO->tick(timeStep);
+			gO->update(timeStep);
 
-			//Check if object is colliding
-			for (GameObject* gO2 : gObjects)
-			{
-				if (gO != gO2)
-				{
-					if (checkCollision(gO->getRect(), gO2->getRect()))
-					{
-						gO->collision(timeStep, gO2);
-					}
-				}
-			}
-			gO->draw();
+			////Check if object is colliding
+			//for (GameObject* gO2 : gObjects)
+			//{
+			//	if (gO != gO2)
+			//	{
+			//		if (checkCollision(gO->getRect(), gO2->getRect()))
+			//		{
+			//			gO->collision(timeStep, gO2);
+			//		}
+			//	}
+			//}
+			//gO->draw();
 		}
 
-		//Remove objects out of bounds
-		std::list<GameObject*>::iterator i = gObjects.begin();
+		////Remove objects out of bounds
+		//std::list<GameObject*>::iterator i = gObjects.begin();
 
-		while (i != gObjects.end())
-		{
-			if ((*i)->getRect().y < -100 || (*i)->getRect().x < -100 || (*i)->getRect().x > SCREEN_WIDTH + 100 || (*i)->getRect().y > SCREEN_HEIGHT + 100)
-			{
-				i = gObjects.erase(i);
-			}
-			else
-			{
-				i++;
-			}
-		}
+		//while (i != gObjects.end())
+		//{
+		//	if ((*i)->getRect().y < -100 || (*i)->getRect().x < -100 || (*i)->getRect().x > SCREEN_WIDTH + 100 || (*i)->getRect().y > SCREEN_HEIGHT + 100)
+		//	{
+		//		i = gObjects.erase(i);
+		//	}
+		//	else
+		//	{
+		//		i++;
+		//	}
+		//}
 
 		//Restart step timer
 		stepTimer.start();
@@ -127,43 +123,43 @@ void Scene::run()
 	}
 }
 
-//True if rects are colliding
-bool Scene::checkCollision(SDL_Rect a, SDL_Rect b)
-{
-	int leftA, rightA, topA, bottomA;
-	leftA = a.x;
-	rightA = a.x + a.w;
-	topA = a.y;
-	bottomA = a.y + a.h;
-
-	int leftB, rightB, topB, bottomB;
-	leftB = b.x;
-	rightB = b.x + b.w;
-	topB = b.y;
-	bottomB = b.y + b.h;
-
-	if (bottomA <= topB)
-	{
-		return false;
-	}
-
-	if (topA >= bottomB)
-	{
-		return false;
-	}
-
-	if (rightA <= leftB)
-	{
-		return false;
-	}
-
-	if (leftA >= rightB)
-	{
-		return false;
-	}
-
-	return true;
-}
+////True if rects are colliding
+//bool Scene::checkCollision(SDL_Rect a, SDL_Rect b)
+//{
+//	int leftA, rightA, topA, bottomA;
+//	leftA = a.x;
+//	rightA = a.x + a.w;
+//	topA = a.y;
+//	bottomA = a.y + a.h;
+//
+//	int leftB, rightB, topB, bottomB;
+//	leftB = b.x;
+//	rightB = b.x + b.w;
+//	topB = b.y;
+//	bottomB = b.y + b.h;
+//
+//	if (bottomA <= topB)
+//	{
+//		return false;
+//	}
+//
+//	if (topA >= bottomB)
+//	{
+//		return false;
+//	}
+//
+//	if (rightA <= leftB)
+//	{
+//		return false;
+//	}
+//
+//	if (leftA >= rightB)
+//	{
+//		return false;
+//	}
+//
+//	return true;
+//}
 
 Scene::~Scene()
 {
