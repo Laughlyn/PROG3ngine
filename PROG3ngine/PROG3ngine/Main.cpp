@@ -14,13 +14,13 @@ int main(int argc, char** argsv)
 	Scene menu;
 	Scene * menup = &menu;
 
-	GameObject* player = new GameObject(new GraphicsComponent("Gradius.png", { 7, 100, 26, 15 }, { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 26 * 4, 15 * 4 }), 
+	GameObject* player = new GameObject(new GraphicsComponent("47444.png", { 6, 21,  32, 16 }, { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 32 * 4, 16 * 4 }), 
 										new PlayerInputComponent());
 	menu.add(player);
-	GameObject* player2 = new GameObject(new GraphicsComponent("Gradius.png", { 7, 100, 26, 15 }, { 100 , 100, 26 * 4, 15 * 4 }),
+	GameObject* player2 = new GameObject(new GraphicsComponent("47444.png", { 6, 21, 32, 16 }, { 100 , 100, 32 * 4, 16 * 4 }),
 										new Player2InputComponent());
 	menu.add(player2);
-	//Load sounds
+	//Load sounds 
 	Audio* audio = Locator::getAudio();
 	audio->addSound("slimeball.wav");
 	audio->addSound("iceball.wav");

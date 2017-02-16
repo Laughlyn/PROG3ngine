@@ -8,39 +8,39 @@ void PlayerInputComponent::update(GameObject* gameObject)
 		SDL_PumpEvents();
 	if (state[SDL_SCANCODE_W])
 	{
-		gameObject->yVel -= 50;
+		gameObject->yVel -= PLAYER_ACC;
 	}
 	if (state[SDL_SCANCODE_S])
 	{
-		gameObject->yVel += 50;
+		gameObject->yVel += PLAYER_ACC;
 	}
 	if (state[SDL_SCANCODE_D])
 	{
-		gameObject->xVel += 50;
+		gameObject->xVel += PLAYER_ACC;
 	}
 	if (state[SDL_SCANCODE_A])
 	{
-		gameObject->xVel -= 50;
+		gameObject->xVel -= PLAYER_ACC;
 	}
 	if (state[SDL_SCANCODE_SPACE])
 	{
 		Audio* audio = Locator::getAudio();
 		audio->playSound(0);
 	}
-	if (gameObject->yVel > 1000)
+	if (gameObject->yVel > PLAYER_SPEED)
 	{
-		gameObject->yVel = 1000;
+		gameObject->yVel = PLAYER_SPEED;
 	}
-	if (gameObject->yVel < -1000)
+	if (gameObject->yVel < -PLAYER_SPEED)
 	{
-		gameObject->yVel = -1000;
+		gameObject->yVel = -PLAYER_SPEED;
 	}
-	if (gameObject->xVel > 1000)
+	if (gameObject->xVel > PLAYER_SPEED) 
 	{
-		gameObject->xVel = 1000;
+		gameObject->xVel = PLAYER_SPEED;
 	}
-	if (gameObject->xVel < -1000)
+	if (gameObject->xVel < -PLAYER_SPEED)
 	{
-		gameObject->xVel = -1000;
+		gameObject->xVel = -PLAYER_SPEED;
 	}
 }
