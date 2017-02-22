@@ -1,6 +1,5 @@
 #include "Scene.h"
 
-
 void Scene::add(GameObject* gObject)
 {
 	gObjects.push_back(gObject);
@@ -34,34 +33,13 @@ void Scene::run()
 			{
 				quit = true;
 			}
-			/*if (event.type == SDL_MOUSEBUTTONDOWN)
-			{
-				for (auto gO : gObjects)
-				{
-					gO->mouseDown(event);
-				}
-			}
-			if (event.type == SDL_MOUSEBUTTONUP)
-			{
-				for (auto gO : gObjects)
-				{
-					gO->mouseUp(event);
-				}
-			}
-			if (event.type == SDL_KEYDOWN)
-			{
-				for (auto gO : gObjects)
-				{
-					gO->keyDown(event);
-				}
-			}
-			if (event.type == SDL_KEYUP)
-			{
-				for (auto gO : gObjects)
-				{
-					gO->keyUp(event);
-				}
-			}*/
+
+			// Create custom pause Scene!
+			//if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE)
+			//{
+			//	Scene pause;
+			//	pause.run();
+			//}
 		}
 
 		//Calculate time step

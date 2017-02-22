@@ -9,8 +9,6 @@
 #include <stdexcept>
 #include <SDL_mixer.h>
 
-
-
 System::System()
 {
 	//Init SDL
@@ -42,6 +40,7 @@ System::System()
 		throw std::runtime_error(std::string("Fontfel: ") + SDL_GetError());
 	}
 
+	//Init audio and locator
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 	SDLAudio *audio = new SDLAudio();
 	Locator::provide(audio);

@@ -15,6 +15,7 @@ public:
 	float yVel = 0;
 	void update(float timeStep);
 	GameObject(GraphicsComponent* graphics, InputComponent* input);
+	GraphicsComponent* getGraphicsComponent() { return graphics_; }
 	~GameObject();
 private:
 	GraphicsComponent* graphics_;
