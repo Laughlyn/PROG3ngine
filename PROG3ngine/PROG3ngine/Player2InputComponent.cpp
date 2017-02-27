@@ -25,7 +25,7 @@ void Player2InputComponent::update(GameObject* gameObject)
 	if (state[SDL_SCANCODE_RCTRL])
 	{
 		Audio* audio = Locator::getAudio();
-		audio->playSound(0);
+		audio->playSound(1);
 	}
 	if (gameObject->yVel > 1000)
 	{

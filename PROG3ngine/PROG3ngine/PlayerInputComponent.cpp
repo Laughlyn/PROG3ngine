@@ -2,6 +2,9 @@
 #include "Audio.h"
 #include "Locator.h"
 #include "System.h"
+#include "Projectile.h"
+
+static Uint32 lastShot = 0;
 
 void PlayerInputComponent::update(GameObject* gameObject)
 {
@@ -24,8 +27,16 @@ void PlayerInputComponent::update(GameObject* gameObject)
 	}
 	if (state[SDL_SCANCODE_SPACE])
 	{
-		Audio* audio = Locator::getAudio();
-		audio->playSound(0);
+		if (SDL_GetTicks() > lastShot + 500)
+		{
+			//Add projectile to scene
+			gameObject->getScene()->add(new Projectile(new PositionComponent(gameObject->getPositionComponent()->getX() + gameObject->getGraphicsComponent()->getdRect()->w, gameObject->getPositionComponent()->getY() + gameObject->getGraphicsComponent()->getdRect()->h / 2), new GraphicsComponent("laserBlue01.png", { 0,0,54,9 }, { 0, 0, 54, 9 })));
+			lastShot = SDL_GetTicks();
+
+			//Play sound
+			Audio* audio = Locator::getAudio();
+			audio->playSound(0);
+		}
 	}
 	if (gameObject->yVel > PLAYER_SPEED)
 	{
@@ -44,3 +55,6 @@ void PlayerInputComponent::update(GameObject* gameObject)
 		gameObject->xVel = -PLAYER_SPEED;
 	}
 }
+
+
+

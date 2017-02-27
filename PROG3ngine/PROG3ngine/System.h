@@ -10,6 +10,7 @@ public:
 	System();
 	SDL_Renderer* getRenderer() { return ren; }
 	TTF_Font* getFont() { return font; }
+	Timer fpsTimer, capTimer, stepTimer;
 	~System();
 private:
 	SDL_Window* win;

@@ -10,11 +10,10 @@ class Scene
 {
 public:
 	void add(GameObject* gObject);
-	void run();
-	/*bool checkCollision(SDL_Rect a, SDL_Rect b);*/
+	virtual void run();
+	std::list<GameObject*> getGObjects();
+	bool checkCollision(SDL_Rect* a, SDL_Rect* b);
 	~Scene();
 private:
 	std::list<GameObject*> gObjects;
-	//The frames per second timer
-	Timer fpsTimer, capTimer, stepTimer;
 };
