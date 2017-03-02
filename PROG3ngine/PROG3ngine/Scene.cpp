@@ -73,19 +73,19 @@ std::list<GameObject*> Scene::getGObjects()
 }
 
 //True if rects are colliding
-bool Scene::checkCollision(SDL_Rect* a, SDL_Rect* b)
+bool Scene::checkCollision(SDL_Rect& a, SDL_Rect& b)
 {
 	int leftA, rightA, topA, bottomA;
-	leftA = a->x;
-	rightA = a->x + a->w;
-	topA = a->y;
-	bottomA = a->y + a->h;
+	leftA = a.x;
+	rightA = a.x + a.w;
+	topA = a.y;
+	bottomA = a.y + a.h;
 
 	int leftB, rightB, topB, bottomB;
-	leftB = b->x;
-	rightB = b->x + b->w;
-	topB = b->y;
-	bottomB = b->y + b->h;
+	leftB = b.x;
+	rightB = b.x + b.w;
+	topB = b.y;
+	bottomB = b.y + b.h;
 
 	if (bottomA <= topB)
 	{

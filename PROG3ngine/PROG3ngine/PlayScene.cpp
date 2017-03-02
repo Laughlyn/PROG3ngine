@@ -91,7 +91,7 @@ void PlayScene::run()
 			{
 				if (gO != gO2)
 				{
-					if (checkCollision(gO->getGraphicsComponent()->getdRect(), gO2->getGraphicsComponent()->getdRect()))
+					if (checkCollision(*gO->getGraphicsComponent()->getdRect(), *gO2->getGraphicsComponent()->getdRect()))
 					{
 						SDL_Log("Collision!");
 					}

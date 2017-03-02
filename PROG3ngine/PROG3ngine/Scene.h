@@ -12,7 +12,7 @@ public:
 	void add(GameObject* gObject);
 	virtual void run();
 	std::list<GameObject*> getGObjects();
-	bool checkCollision(SDL_Rect* a, SDL_Rect* b);
+	bool checkCollision(SDL_Rect& a, SDL_Rect& b);
 	~Scene();
 private:
 	std::list<GameObject*> gObjects;
