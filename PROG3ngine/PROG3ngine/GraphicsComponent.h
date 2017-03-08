@@ -11,8 +11,8 @@ class GraphicsComponent
 public:
 	GraphicsComponent(std::string path);
 	GraphicsComponent(std::string path, SDL_Rect s, SDL_Rect d);
-	virtual void update(GameObject* gameObject);
-	SDL_Rect* getdRect();
+	virtual void update(GameObject& gameObject);
+	SDL_Rect &getdRect();
 	~GraphicsComponent();
 
 protected:

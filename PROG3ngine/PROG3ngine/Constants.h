@@ -9,7 +9,7 @@ const float TILT_THRESH = 500;
 
 const bool V_SYNC = false;
 
-const int SCREEN_FPS = 144;
+const int SCREEN_FPS = 60;
 const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
 
 const float gravity = 9.8f;

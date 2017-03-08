@@ -6,6 +6,6 @@ class Player2InputComponent :
 	public InputComponent
 {
 public:
-	virtual void update(GameObject* gameObject);
+	virtual void update(GameObject& gameObject);
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 };

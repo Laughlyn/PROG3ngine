@@ -44,6 +44,10 @@ System::System()
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 	SDLAudio *audio = new SDLAudio();
 	Locator::provide(audio);
+
+	//Load sounds 
+	audio->addSound("slimeball.wav");
+	audio->addSound("iceball.wav");
 }
 
 System::~System()

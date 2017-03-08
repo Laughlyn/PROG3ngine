@@ -5,11 +5,11 @@ PositionComponent::PositionComponent(float x, float y) : x(x), y(y)
 {
 }
 
-void PositionComponent::update(GameObject* gameObject, float timeStep)
+void PositionComponent::update(GameObject& gameObject, float timeStep)
 {
-	y += gameObject->yVel * timeStep;
+	setY(getY() + gameObject.yVel * timeStep);
 
-	x += gameObject->xVel * timeStep;
+	setX(getX() + gameObject.xVel * timeStep);
 }
 
 float PositionComponent::getX()

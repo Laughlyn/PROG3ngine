@@ -19,20 +19,21 @@ GraphicsComponent::GraphicsComponent(std::string path, SDL_Rect s, SDL_Rect d) :
 	SDL_SetTextureBlendMode(spriteTexture, SDL_BLENDMODE_BLEND);
 }
 
-void GraphicsComponent::update(GameObject* gameObject)
+void GraphicsComponent::update(GameObject& gameObject)
 {
-	if (gameObject->getPositionComponent())
+	if (gameObject.getPositionComponent())
 	{
-		dRect = { (int)gameObject->getPositionComponent()->getX(), (int)gameObject->getPositionComponent()->getY(), dRect.w, dRect.h };
+		dRect = { (int)gameObject.getPositionComponent()->getX(), (int)gameObject.getPositionComponent()->getY(), dRect.w, dRect.h };
 	}
 	SDL_RenderCopy(sys.getRenderer(), spriteTexture, &sRect, &dRect);
 }
 
-SDL_Rect* GraphicsComponent::getdRect()
+SDL_Rect &GraphicsComponent::getdRect()
 {
-	return &dRect;
+	return dRect;
 }
 
 GraphicsComponent::~GraphicsComponent()
 {
+	SDL_DestroyTexture(spriteTexture);
 }

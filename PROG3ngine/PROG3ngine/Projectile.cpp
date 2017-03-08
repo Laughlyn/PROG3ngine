@@ -9,7 +9,14 @@ Projectile::Projectile(PositionComponent* position, GraphicsComponent* graphics)
 
 void Projectile::scripts()
 {
-
+	if (getPositionComponent())
+	{
+	
+	if (getPositionComponent()->getX() > SCREEN_WIDTH)
+	{
+		expire();
+	}
+}
 }
 
 Projectile::~Projectile()

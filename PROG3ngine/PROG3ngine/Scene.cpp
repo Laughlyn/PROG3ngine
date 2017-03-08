@@ -73,7 +73,7 @@ std::list<GameObject*> Scene::getGObjects()
 }
 
 //True if rects are colliding
-bool Scene::checkCollision(SDL_Rect& a, SDL_Rect& b)
+bool Scene::checkCollision(const SDL_Rect& a, const SDL_Rect& b)
 {
 	int leftA, rightA, topA, bottomA;
 	leftA = a.x;
@@ -108,6 +108,19 @@ bool Scene::checkCollision(SDL_Rect& a, SDL_Rect& b)
 	}
 
 	return true;
+}
+
+void Scene::removeExpired()
+{
+	for (auto i = gObjects.begin(); i != gObjects.end();) 
+	{
+		if ((*i)->expired())
+		{
+			i = gObjects.erase(i);
+		}
+		else
+			++i;
+	}
 }
 
 Scene::~Scene()

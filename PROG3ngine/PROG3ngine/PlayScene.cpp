@@ -5,34 +5,44 @@
 #include "Locator.h"
 #include "PlayerInputComponent.h"
 #include "InputComponent.h"
+#include <string>
 
 
 PlayScene::PlayScene()
 {
-	GameObject* background = new GameObject(
-		new PositionComponent(0, 0), 
-		new GraphicsComponent("blue.png", { 0, 0, 256, 256 }, {0, 0, 256, 256}));
-	add(background);
+	int bGx = 0;
+	int bGy = 0;
+	int row = 0;
+	for (int i = 0; i < 32; i++)
+	{
+		SDL_Rect sRect{ 0, 0, 256, 256 };
+		SDL_Rect dRect{ 0, 0, 256, 256 };
+		GameObject* background = new GameObject(
+			new PositionComponent(bGx, bGy),
+			new GraphicsComponent(std::string("blue.png"), sRect, dRect));
+		add(background);
+		bGx = 256 * i - (i / 8 * (256*8));
+		bGy = 256 * (i / 8);
+	}
 
 	//Create player 1 (WASD)
+	SDL_Rect sRect2{ 6, 21,  33, 16 };
+	SDL_Rect dRect2{ 0, 0, 32 * 4, 16 * 4 };
 	GameObject* player = new GameObject(
 		new PositionComponent(200, 300), 
-		new PlayerGraphicsComponent("47444.png", { 6, 21,  33, 16 }, { 0, 0, 32 * 4, 16 * 4 }),
+		new PlayerGraphicsComponent(std::string("47444.png"), { 6, 21,  33, 16 }, dRect2),
 		new PlayerInputComponent());
 	add(player);
 
 
 	//Create player 2 (ARROWS)
+	/*SDL_Rect sRect3{ 6, 21,  33, 16 };
+	SDL_Rect dRect3{ 0, 0, 32 * 4, 16 * 4 };
 	GameObject* player2 = new GameObject(
 		new PositionComponent(200, 600), 
-		new PlayerGraphicsComponent("47444.png", { 6, 21, 33, 16 }, { 0 , 0, 32 * 4, 16 * 4 }),
+		new PlayerGraphicsComponent(std::string("47444.png"), sRect3, dRect3),
 		new Player2InputComponent());
-	add(player2);
-
-	//Load sounds 
-	Audio* audio = Locator::getAudio();
-	audio->addSound("slimeball.wav");
-	audio->addSound("iceball.wav");
+	add(player2);*/
 
 	run();
 }
@@ -81,6 +91,7 @@ void PlayScene::run()
 		SDL_SetRenderDrawColor(sys.getRenderer(), 0, 0, 0, 0);
 		SDL_RenderClear(sys.getRenderer());
 
+
 		//Render all GameObjects in gObjects
 		for (GameObject* gO : getGObjects())
 		{
@@ -91,13 +102,17 @@ void PlayScene::run()
 			{
 				if (gO != gO2)
 				{
-					if (checkCollision(*gO->getGraphicsComponent()->getdRect(), *gO2->getGraphicsComponent()->getdRect()))
+					if (checkCollision(gO->getGraphicsComponent()->getdRect(), gO2->getGraphicsComponent()->getdRect()))
 					{
 						SDL_Log("Collision!");
 					}
 				}
 			}
 		}
+
+
+		//Remove expired GameObjects from Scene
+		removeExpired();
 
 		//Restart step timer
 		sys.stepTimer.start();

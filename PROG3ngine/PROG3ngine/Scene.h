@@ -9,10 +9,11 @@
 class Scene
 {
 public:
+	void removeExpired();
 	void add(GameObject* gObject);
 	virtual void run();
 	std::list<GameObject*> getGObjects();
-	bool checkCollision(SDL_Rect& a, SDL_Rect& b);
+	bool checkCollision(const SDL_Rect& a, const SDL_Rect& b);
 	~Scene();
 private:
 	std::list<GameObject*> gObjects;
