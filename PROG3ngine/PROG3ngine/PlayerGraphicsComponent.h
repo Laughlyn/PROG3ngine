@@ -6,7 +6,7 @@ class PlayerGraphicsComponent :
 	public GraphicsComponent
 {
 public:
-	PlayerGraphicsComponent(std::string path, SDL_Rect s, SDL_Rect d);
+	PlayerGraphicsComponent(std::string path, SDL_Rect s, int scale);
 	void update(GameObject& gameObject) override;
 };
 

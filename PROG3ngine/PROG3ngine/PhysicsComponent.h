@@ -4,10 +4,13 @@
 class PhysicsComponent
 {
 public:
-	PhysicsComponent(int b, int f, int m);
+	PhysicsComponent(SDL_Rect hB, int b, int f, int m);
 	void update(GameObject& gameObject, float timeStep);
+	void collision(GameObject* gO, GameObject* otherGO);
+	SDL_Rect getHitBox();
 	~PhysicsComponent();
 private:
-	int bounce, friction, mass;
+	int offX, offY, bounce, friction, mass;
+	SDL_Rect hitBox = { 0,0,0,0 };
 };
 

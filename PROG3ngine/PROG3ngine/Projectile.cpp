@@ -2,21 +2,19 @@
 
 
 
-Projectile::Projectile(PositionComponent* position, GraphicsComponent* graphics) : GameObject (position, graphics)
+Projectile::Projectile(PositionComponent* position = nullptr, MovementComponent* movement = nullptr, GraphicsComponent* graphics = nullptr, PhysicsComponent* physics = nullptr) : GameObject (position, movement, graphics, physics)
 {
-	xVel = 2000;
 }
 
 void Projectile::scripts()
 {
 	if (getPositionComponent())
 	{
-	
-	if (getPositionComponent()->getX() > SCREEN_WIDTH)
-	{
-		expire();
+		if (getPositionComponent()->getX() > SCREEN_WIDTH)
+		{
+			expire();
+		}
 	}
-}
 }
 
 Projectile::~Projectile()

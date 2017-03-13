@@ -6,7 +6,7 @@
 void Player2InputComponent::update(GameObject& gameObject)
 {
 	SDL_PumpEvents();
-	if (state[SDL_SCANCODE_UP])
+	/*if (state[SDL_SCANCODE_UP])
 	{
 		gameObject.yVel -= 50;
 	}
@@ -42,5 +42,5 @@ void Player2InputComponent::update(GameObject& gameObject)
 	if (gameObject.xVel < -1000)
 	{
 		gameObject.xVel = -1000;
-	}
+	}*/
 }

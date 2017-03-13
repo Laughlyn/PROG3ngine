@@ -7,9 +7,7 @@ PositionComponent::PositionComponent(float x, float y) : x(x), y(y)
 
 void PositionComponent::update(GameObject& gameObject, float timeStep)
 {
-	setY(getY() + gameObject.yVel * timeStep);
 
-	setX(getX() + gameObject.xVel * timeStep);
 }
 
 float PositionComponent::getX()

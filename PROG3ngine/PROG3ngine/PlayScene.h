@@ -5,5 +5,6 @@ class PlayScene :
 {
 public:
 	PlayScene();
-	void run() override;
+	void createWave(int size);
+	void scripts();
 };

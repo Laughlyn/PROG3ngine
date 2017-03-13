@@ -4,8 +4,7 @@ class Projectile :
 	public GameObject
 {
 public:
-	Projectile(PositionComponent* position, GraphicsComponent* graphics);
+	Projectile(PositionComponent* position, MovementComponent* movement, GraphicsComponent* graphics, PhysicsComponent* physics);
 	void scripts();
 	~Projectile();
 };
-

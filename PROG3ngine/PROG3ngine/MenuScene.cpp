@@ -6,11 +6,9 @@
 
 MenuScene::MenuScene()
 {
-	SDL_Rect sRect{ 9, 736, 242, 50 };
-	SDL_Rect dRect{ 0, 0, 242 * 2, 50 * 2 };
 	GameObject* button = new GameObject(
 		new PositionComponent(SCREEN_WIDTH / 2 - 242, SCREEN_HEIGHT / 2 - 50),
-		new GraphicsComponent(std::string("47444.png"), sRect, dRect),
+		new GraphicsComponent(std::string("47444.png"), { 9, 736, 242, 50 }, 2),
 		new ButtonInputComponent());
 	add(button);
 	run();
