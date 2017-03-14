@@ -1,30 +1,30 @@
 #include "GameObject.h"
 
-GameObject::GameObject(PositionComponent* position = nullptr, MovementComponent* movement = nullptr, GraphicsComponent* graphics = nullptr, InputComponent* input = nullptr, PhysicsComponent* physics = nullptr) : position_(position), movement_(movement), graphics_(graphics), input_(input), physics_(physics)
+GameObject::GameObject(std::unique_ptr<PositionComponent> position, std::unique_ptr<MovementComponent> movement, std::shared_ptr<GraphicsComponent> graphics, std::unique_ptr<InputComponent> input, std::unique_ptr<PhysicsComponent> physics) : position_(std::move(position)), movement_(std::move(movement)), graphics_(graphics), input_(std::move(input)), physics_(std::move(physics))
 {
 }
 
-GameObject::GameObject(PositionComponent* position, GraphicsComponent* graphics, InputComponent* input, PhysicsComponent* physics) : position_(position), graphics_(graphics), input_(input), physics_(physics)
+GameObject::GameObject(std::unique_ptr<PositionComponent> position, std::shared_ptr<GraphicsComponent> graphics, std::unique_ptr<InputComponent> input, std::unique_ptr<PhysicsComponent> physics) : position_(std::move(position)), graphics_(graphics), input_(std::move(input)), physics_(std::move(physics))
 {
 }
 
-GameObject::GameObject(PositionComponent * position, MovementComponent * movement, GraphicsComponent * graphics, PhysicsComponent * physics) : position_(position), movement_(movement), graphics_(graphics), physics_(physics)
+GameObject::GameObject(std::unique_ptr<PositionComponent> position, std::unique_ptr<MovementComponent> movement, std::shared_ptr<GraphicsComponent> graphics, std::unique_ptr<PhysicsComponent> physics) : position_(std::move(position)), movement_(std::move(movement)), graphics_(graphics), physics_(std::move(physics))
 {
 }
 
-GameObject::GameObject(PositionComponent * position, GraphicsComponent * graphics, PhysicsComponent * physics) : position_(position), graphics_(graphics), physics_(physics)
+GameObject::GameObject(std::unique_ptr<PositionComponent> position, std::shared_ptr<GraphicsComponent> graphics, std::unique_ptr<PhysicsComponent> physics) : position_(std::move(position)), graphics_(graphics), physics_(std::move(physics))
 {
 }
 
-GameObject::GameObject(PositionComponent* position, GraphicsComponent* graphics, InputComponent* input) : position_(position), graphics_(graphics), input_(input)
+GameObject::GameObject(std::unique_ptr<PositionComponent> position, std::shared_ptr<GraphicsComponent> graphics, std::unique_ptr<InputComponent> input) : position_(std::move(position)), graphics_(graphics), input_(std::move(input))
 {
 }
 
-GameObject::GameObject(PositionComponent* position, GraphicsComponent* graphics) : position_(position), graphics_(graphics)
+GameObject::GameObject(std::unique_ptr<PositionComponent> position, std::shared_ptr<GraphicsComponent> graphics) : position_(std::move(position)), graphics_(graphics)
 {
 }
 
-GameObject::GameObject(PositionComponent* position, MovementComponent* movement, GraphicsComponent* graphics) : position_(position), movement_(movement), graphics_(graphics)
+GameObject::GameObject(std::unique_ptr<PositionComponent> position, std::unique_ptr<MovementComponent> movement, std::shared_ptr<GraphicsComponent> graphics) : position_(std::move(position)), movement_(std::move(movement)), graphics_(graphics)
 {
 }
 
@@ -52,13 +52,4 @@ void GameObject::update(float timeStep)
 void GameObject::scripts()
 {
 
-}
-
-GameObject::~GameObject()
-{
-	delete graphics_;
-	delete input_;
-	delete position_;
-	delete physics_;
-	delete movement_;
 }

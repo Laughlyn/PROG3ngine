@@ -127,6 +127,8 @@
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="ButtonInputComponent.cpp" />
     <ClCompile Include="DemoInputComponent.cpp" />
+    <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="ExplosionGraphicsComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="InputComponent.cpp" />
@@ -150,6 +152,8 @@
     <ClInclude Include="ButtonInputComponent.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DemoInputComponent.h" />
+    <ClInclude Include="Explosion.h" />
+    <ClInclude Include="ExplosionGraphicsComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="InputComponent.h" />

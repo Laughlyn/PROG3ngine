@@ -7,9 +7,9 @@ void Scene::scripts()
 
 }
 
-void Scene::add(GameObject* gObject)
+void Scene::add(std::unique_ptr<GameObject> gObject)
 {
-	gObject->setScene(this);
+	gObject->setScene(std::make_shared<Scene>());
 	gObjects.emplace_back(gObject);
 }
 
@@ -64,22 +64,22 @@ void Scene::run()
 
 
 		//Render all GameObjects in gObjects
-		for (GameObject* gO : getGObjects())
+		for (std::unique_ptr<GameObject> const& gO : getGObjects())
 		{
 			gO->update(timeStep);
 
 			//Check if object is colliding
 			if (gO->getPhysicsComponent() != nullptr)
 			{
-				for (GameObject* gO2 : getGObjects())
+				for (std::unique_ptr<GameObject> const& gO2 : getGObjects())
 				{
 					if (gO != gO2 && gO->getPhysicsComponent() != nullptr && gO2->getPhysicsComponent() != nullptr)
 					{
 						if (checkCollision(gO->getPhysicsComponent()->getHitBox(), gO2->getPhysicsComponent()->getHitBox()))
 						{
 							SDL_Log("Collision!");
-							gO->getPhysicsComponent()->collision(gO, gO2);
-							gO2->getPhysicsComponent()->collision(gO2, gO);
+							//gO->getPhysicsComponent()->collision(gO, gO2);
+							//gO2->getPhysicsComponent()->collision(gO2, gO);
 
 							//Play sound
 							Audio* audio = Locator::getAudio();
@@ -115,7 +115,7 @@ void Scene::run()
 	}
 }
 
-std::list<GameObject*> const &Scene::getGObjects() const
+std::list<std::unique_ptr<GameObject>> const &Scene::getGObjects() const
 {
 	return gObjects;
 }
@@ -173,8 +173,5 @@ void Scene::removeExpired()
 
 Scene::~Scene()
 {
-	for (GameObject* gO : gObjects)
-	{
-		delete gO;
-	}
+
 }

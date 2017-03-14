@@ -2,7 +2,7 @@
 
 
 
-Projectile::Projectile(PositionComponent* position = nullptr, MovementComponent* movement = nullptr, GraphicsComponent* graphics = nullptr, PhysicsComponent* physics = nullptr) : GameObject (position, movement, graphics, physics)
+Projectile::Projectile(std::unique_ptr<PositionComponent> position, std::unique_ptr<MovementComponent> movement, std::shared_ptr<GraphicsComponent> graphics, std::unique_ptr<PhysicsComponent> physics) : GameObject (std::move(position), std::move(movement), graphics, std::move(physics))
 {
 }
 

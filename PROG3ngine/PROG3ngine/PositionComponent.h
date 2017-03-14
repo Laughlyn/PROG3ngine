@@ -10,7 +10,6 @@ public:
 	float getY();
 	void setX(float);
 	void setY(float);
-	~PositionComponent();
 private:
 	float x;
 	float y;

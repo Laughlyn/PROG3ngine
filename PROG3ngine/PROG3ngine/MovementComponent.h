@@ -11,7 +11,6 @@ public:
 	float getYVel() { return yVel; }
 	void setXVel(float newXVel) { xVel = newXVel; }
 	void setYVel(float newYVel) { yVel = newYVel; }
-	~MovementComponent();
 private:
 	float xVel, yVel;
 };

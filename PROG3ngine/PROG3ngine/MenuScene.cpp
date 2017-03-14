@@ -1,16 +1,18 @@
 #include "MenuScene.h"
 #include "ButtonInputComponent.h"
 #include <string>
+#include <memory>
 
 
 
 MenuScene::MenuScene()
 {
-	GameObject* button = new GameObject(
-		new PositionComponent(SCREEN_WIDTH / 2 - 242, SCREEN_HEIGHT / 2 - 50),
-		new GraphicsComponent(std::string("47444.png"), { 9, 736, 242, 50 }, 2),
-		new ButtonInputComponent());
-	add(button);
+	SDL_Rect rect = { 9, 736, 242, 50 };
+	std::unique_ptr<GameObject> button = std::make_unique<GameObject>(
+		std::make_unique<PositionComponent>(SCREEN_WIDTH / 2 - 242, SCREEN_HEIGHT / 2 - 50),
+		std::make_shared<GraphicsComponent>(std::string("47444.png"), rect, 2),
+		std::make_unique<ButtonInputComponent>());
+	add(std::move(button));
 	run();
 }
 
@@ -52,7 +54,7 @@ void MenuScene::run()
 			SDL_RenderClear(sys.getRenderer());
 
 			//Render all GameObjects in gObjects
-			for (GameObject* gO : getGObjects())
+			for (std::unique_ptr<GameObject> const& gO : getGObjects())
 			{
 				gO->update(timeStep);
 			}

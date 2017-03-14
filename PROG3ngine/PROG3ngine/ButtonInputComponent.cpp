@@ -26,6 +26,5 @@ void ButtonInputComponent::update(GameObject& gameObject)
 
 void ButtonInputComponent::clicked()
 {
-	PlayScene* play = new PlayScene();
-	delete play;
+	std::make_shared<PlayScene>();
 }

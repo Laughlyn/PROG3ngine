@@ -17,7 +17,3 @@ void MovementComponent::update(GameObject& gameObject, float timeStep)
 
 	gameObject.getPositionComponent()->setX(gameObject.getPositionComponent()->getX() + xVel * timeStep);
 }
-
-MovementComponent::~MovementComponent()
-{
-}

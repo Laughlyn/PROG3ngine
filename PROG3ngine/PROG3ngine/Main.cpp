@@ -2,6 +2,6 @@
 
 int main(int argc, char** argsv)
 {
-	new MenuScene();
+	std::make_shared<MenuScene>();
 	return 0;
 }

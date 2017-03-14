@@ -15,7 +15,6 @@ public:
 	GraphicsComponent(std::string path, SDL_Rect s);
 	virtual void update(GameObject& gameObject);
 	SDL_Rect &getdRect();
-	~GraphicsComponent();
 
 protected:
 	SDL_Texture* spriteTexture;

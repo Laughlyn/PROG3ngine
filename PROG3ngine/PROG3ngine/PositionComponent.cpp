@@ -29,7 +29,3 @@ void PositionComponent::setY(float newY)
 {
 	y = newY;
 }
-
-PositionComponent::~PositionComponent()
-{
-}

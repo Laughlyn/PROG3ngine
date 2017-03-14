@@ -45,7 +45,9 @@ void GraphicsComponent::update(GameObject& gameObject)
 	{
 		dRect = { (int)gameObject.getPositionComponent()->getX(), (int)gameObject.getPositionComponent()->getY(), dRect.w, dRect.h };
 	}
+
 	SDL_RenderCopy(sys.getRenderer(), spriteTexture, &sRect, &dRect);
+
 	if (DEBUG)
 	{
 		if (gameObject.getPhysicsComponent() != nullptr)
@@ -59,9 +61,4 @@ void GraphicsComponent::update(GameObject& gameObject)
 SDL_Rect &GraphicsComponent::getdRect()
 {
 	return dRect;
-}
-
-GraphicsComponent::~GraphicsComponent()
-{
-	SDL_DestroyTexture(spriteTexture);
 }
