@@ -7,6 +7,11 @@ PlayerGraphicsComponent::PlayerGraphicsComponent(std::string path, SDL_Rect s, i
 
 }
 
+PlayerGraphicsComponent::PlayerGraphicsComponent(SDL_Texture* texture, SDL_Rect s, int scale) : GraphicsComponent(texture, s, scale)
+{
+
+}
+
 void PlayerGraphicsComponent::update(GameObject& gameObject)
 {
 	//Change sprite if ship is travelling fast enough up or down

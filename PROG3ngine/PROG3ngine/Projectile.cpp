@@ -10,7 +10,7 @@ void Projectile::scripts()
 {
 	if (getPositionComponent())
 	{
-		if (getPositionComponent()->getX() > SCREEN_WIDTH)
+		if (getPositionComponent()->getX() > SCREEN_WIDTH || getPositionComponent()->getY() > SCREEN_HEIGHT)
 		{
 			expire();
 		}

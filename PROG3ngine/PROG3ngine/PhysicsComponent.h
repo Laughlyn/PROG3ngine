@@ -6,7 +6,7 @@ class PhysicsComponent
 public:
 	PhysicsComponent(SDL_Rect hB, int b, int f, int m);
 	void update(GameObject& gameObject, float timeStep);
-	void collision(GameObject* gO, GameObject* otherGO);
+	void collision(GameObject& gO, GameObject& otherGO);
 	SDL_Rect getHitBox();
 	~PhysicsComponent();
 private:

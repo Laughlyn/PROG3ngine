@@ -4,8 +4,9 @@ const int SCREEN_WIDTH = 1600;
 const int SCREEN_HEIGHT = 900;
 
 const float PLAYER_ACC = 25;
-const float PLAYER_SPEED = 900;
+const float PLAYER_SPEED = 800;
 const float TILT_THRESH = 500;
+const int FIRE_SPEED = 200; //Lower is faster
 
 const bool V_SYNC = true;
 const bool DEBUG = true;

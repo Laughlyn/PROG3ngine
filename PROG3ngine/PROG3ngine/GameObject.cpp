@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-GameObject::GameObject(PositionComponent* position = nullptr, MovementComponent* movement = nullptr, GraphicsComponent* graphics = nullptr, InputComponent* input = nullptr, PhysicsComponent* physics = nullptr) : position_(position), movement_(movement), graphics_(graphics), input_(input), physics_(physics)
+GameObject::GameObject(PositionComponent* position, MovementComponent* movement, GraphicsComponent* graphics, InputComponent* input, PhysicsComponent* physics) : position_(position), movement_(movement), graphics_(graphics), input_(input), physics_(physics)
 {
 }
 
@@ -47,6 +47,9 @@ void GameObject::update(float timeStep)
 
 	if (graphics_)
 		graphics_->update(*this);
+
+	if (getPositionComponent()->getX() < -100)
+		expire();
 }
 
 void GameObject::scripts()
@@ -61,4 +64,9 @@ GameObject::~GameObject()
 	delete position_;
 	delete physics_;
 	delete movement_;
+}
+
+void GameObject::onExpiration()
+{
+
 }

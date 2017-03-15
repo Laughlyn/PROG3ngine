@@ -30,7 +30,7 @@ void PlayerInputComponent::update(GameObject& gameObject)
 	}
 	if (state[SDL_SCANCODE_SPACE])
 	{
-		if (SDL_GetTicks() > lastShot + 500)
+		if (SDL_GetTicks() > lastShot + FIRE_SPEED)
 		{
 			//Add projectile to scene
 			gameObject.getScene()->add(
@@ -39,6 +39,24 @@ void PlayerInputComponent::update(GameObject& gameObject)
 				new MovementComponent(3000, 0),
 				new GraphicsComponent(std::string("laserBlue01.png"), SDL_Rect({ 0, 0, 54, 9 }), 1),
 				new PhysicsComponent({30, 0, 20, 9}, 1, 1, 0)));
+			lastShot = SDL_GetTicks();
+
+			//Play sound
+			Audio* audio = Locator::getAudio();
+			audio->playSound(0);
+		}
+	}
+	if (state[SDL_SCANCODE_LCTRL])
+	{
+		if (SDL_GetTicks() > lastShot + FIRE_SPEED)
+		{
+			//Add projectile to scene
+			gameObject.getScene()->add(
+				new Projectile(
+					new PositionComponent(gameObject.getPositionComponent()->getX() + gameObject.getGraphicsComponent()->getdRect().w, gameObject.getPositionComponent()->getY() + gameObject.getGraphicsComponent()->getdRect().h / 2),
+					new MovementComponent(1000, -1000),
+					new GraphicsComponent(std::string("star2.png"), SDL_Rect({ 0, 0, 16, 16 }), 1),
+					new PhysicsComponent({ 0, 0, 20, 9 }, 1, 1, 1)));
 			lastShot = SDL_GetTicks();
 
 			//Play sound

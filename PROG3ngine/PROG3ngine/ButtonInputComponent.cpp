@@ -6,6 +6,7 @@
 #include "PlayerGraphicsComponent.h"
 #include <SDL.h>
 #include "PlayScene.h"
+#include "Level.h"
 
 void ButtonInputComponent::update(GameObject& gameObject)
 {
@@ -27,5 +28,4 @@ void ButtonInputComponent::update(GameObject& gameObject)
 void ButtonInputComponent::clicked()
 {
 	PlayScene* play = new PlayScene();
-	delete play;
 }
