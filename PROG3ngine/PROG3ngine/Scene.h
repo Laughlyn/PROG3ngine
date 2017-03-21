@@ -14,8 +14,8 @@ public:
 	void removeExpired();
 	void add(GameObject* gObject);
 	virtual void run();
-	std::list<GameObject*>const &getGObjects() const;
-	bool checkCollision(const SDL_Rect& a, const SDL_Rect& b);
+	std::list<GameObject*>const & getGObjects() const;
+	bool checkCollision(const SDL_Rect & a, const SDL_Rect & b);
 	~Scene();
 private:
 	std::list<GameObject*> gObjects;

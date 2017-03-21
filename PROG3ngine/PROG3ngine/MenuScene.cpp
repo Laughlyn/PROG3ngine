@@ -1,14 +1,24 @@
 #include "MenuScene.h"
 #include "ButtonInputComponent.h"
 #include <string>
-
-
+#include "Audio.h"
+#include "Locator.h"
 
 MenuScene::MenuScene()
 {
+	//Load sounds 
+	Audio* audio = Locator::getAudio();
+	audio->addSound("slimeball.wav");
+	audio->addSound("iceball.wav");
+	audio->addSound("explode.wav");
+	audio->addSound("Spacetime.mp3");
+	audio->addSound("Engine.wav");
+
+	audio->playSound(MUSIC, 25);
+
 	GameObject* button = new GameObject(
 		new PositionComponent(SCREEN_WIDTH / 2 - 242, SCREEN_HEIGHT / 2 - 50),
-		new GraphicsComponent(std::string("47444.png"), { 9, 736, 242, 50 }, 2),
+		new GraphicsComponent(std::string("47444.png"), SDL_Rect({ 9, 736, 242, 50 }), 2),
 		new ButtonInputComponent());
 	add(button);
 	run();

@@ -8,6 +8,7 @@ public:
 	void createWave(int size);
 	void createStars();
 	void scripts();
+	~PlayScene();
 private:
 		SDL_Texture* textureAtlas;
 };

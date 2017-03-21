@@ -2,7 +2,9 @@
 
 class GameObject;
 
-PhysicsComponent::PhysicsComponent(SDL_Rect hB, int b, int f, int m) : hitBox(hB), bounce(b), friction(f), mass(m)
+
+//hitBox Rect {xOffset, yOffset, width, height}, Bounce, friction, mass
+PhysicsComponent::PhysicsComponent(SDL_Rect & hB, int b, int f, int m) : hitBox(hB), bounce(b), friction(f), mass(m)
 {
 	offX = hB.x;
 	offY = hB.y;
@@ -10,9 +12,7 @@ PhysicsComponent::PhysicsComponent(SDL_Rect hB, int b, int f, int m) : hitBox(hB
 
 void PhysicsComponent::update(GameObject& gameObject, float timeStep)
 {
-	//gameObject.getPositionComponent()->setY(gameObject.getPositionComponent()->getY() + (1000 * timeStep * mass));
-
-	gameObject.getMovementComponent()->setYVel(gameObject.getMovementComponent()->getYVel() + (9800 * timeStep * mass));
+	gameObject.getMovementComponent()->setYVel(gameObject.getMovementComponent()->getYVel() + (timeStep * ((float)mass / 100.f) * gravity * 1000.f ));
 
 	hitBox = {(int)gameObject.getPositionComponent()->getX() + offX, (int)gameObject.getPositionComponent()->getY() + offY, hitBox.w, hitBox.h};
 }

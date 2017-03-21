@@ -9,6 +9,7 @@ class SDLAudio :
 public:
 	SDLAudio();
 	virtual void playSound(int soundID);
+	virtual void playSound(int soundID, int volume);
 	virtual void stopSound(int soundID);
 	virtual void stopAllSounds();
 	virtual void addSound(std::string path);

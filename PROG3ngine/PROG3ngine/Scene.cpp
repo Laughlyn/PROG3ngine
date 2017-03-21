@@ -80,11 +80,6 @@ void Scene::run()
 							SDL_Log("Collision!");
 							gO->getPhysicsComponent()->collision(*gO, *gO2);
 							gO2->getPhysicsComponent()->collision(*gO2, *gO);
-
-							//Play sound
-							Audio* audio = Locator::getAudio();
-							audio->playSound(1);
-
 						}
 					}
 				}
@@ -115,7 +110,7 @@ void Scene::run()
 	}
 }
 
-std::list<GameObject*> const &Scene::getGObjects() const
+std::list<GameObject*> const & Scene::getGObjects() const
 {
 	return gObjects;
 }

@@ -19,7 +19,7 @@ class GameObject
 public:
 	bool expired() { return hasExpired; }
 	void expire() { hasExpired = true; onExpiration(); }
-	void update(float timeStep);
+	virtual void update(float timeStep);
 	virtual void scripts();
 
 	GameObject(PositionComponent* position, MovementComponent* movement, GraphicsComponent* graphics, InputComponent* input, PhysicsComponent* physics);
@@ -39,7 +39,7 @@ public:
 
 	void setScene(Scene& myScene) { myScene_ = &myScene; }
 	Scene* getScene() { if (myScene_)return myScene_; else return nullptr; }
-	~GameObject();
+	virtual ~GameObject();
 private:
 	virtual void onExpiration();
 	bool hasExpired = false;

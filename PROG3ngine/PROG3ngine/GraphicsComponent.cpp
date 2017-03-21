@@ -3,7 +3,7 @@
 #include <SDL_image.h>
 
 //Path to file
-GraphicsComponent::GraphicsComponent(std::string path)
+GraphicsComponent::GraphicsComponent(std::string const & path)
 {
 	int w, h;
 	spriteTexture = IMG_LoadTexture(sys.getRenderer(), path.c_str());
@@ -13,7 +13,7 @@ GraphicsComponent::GraphicsComponent(std::string path)
 	dRect = { 0, 0, sRect.w, sRect.h};
 }
 
-GraphicsComponent::GraphicsComponent(std::string path, int scale)
+GraphicsComponent::GraphicsComponent(std::string const & path, int scale)
 {
 	int w, h;
 	spriteTexture = IMG_LoadTexture(sys.getRenderer(), path.c_str());
@@ -24,7 +24,7 @@ GraphicsComponent::GraphicsComponent(std::string path, int scale)
 }
 
 //Path to file, Source Rect, Destination Rect, render scale
-GraphicsComponent::GraphicsComponent(std::string path, SDL_Rect s, int scale) : sRect(s)
+GraphicsComponent::GraphicsComponent(std::string const & path, SDL_Rect & s, int scale) : sRect(s)
 {
 	spriteTexture = IMG_LoadTexture(sys.getRenderer(), path.c_str());
 	SDL_SetTextureBlendMode(spriteTexture, SDL_BLENDMODE_BLEND);
@@ -32,14 +32,14 @@ GraphicsComponent::GraphicsComponent(std::string path, SDL_Rect s, int scale) : 
 }
 
 //Path to file, Source Rect, Destination Rect
-GraphicsComponent::GraphicsComponent(std::string path, SDL_Rect s) : sRect(s)
+GraphicsComponent::GraphicsComponent(std::string const & path, SDL_Rect & s) : sRect(s)
 {
 	spriteTexture = IMG_LoadTexture(sys.getRenderer(), path.c_str());
 	SDL_SetTextureBlendMode(spriteTexture, SDL_BLENDMODE_BLEND);
 	dRect = { 0, 0, s.w, s.h };
 }
 
-GraphicsComponent::GraphicsComponent(std::string path, std::vector<SDL_Rect> frames) : frameClips(frames)
+GraphicsComponent::GraphicsComponent(std::string const & path, std::vector<SDL_Rect>& frames) : frameClips(frames)
 {
 	animated = true;
 	timer = SDL_GetTicks();
@@ -49,7 +49,7 @@ GraphicsComponent::GraphicsComponent(std::string path, std::vector<SDL_Rect> fra
 	dRect = { 0, 0, frameClips[0].w, frameClips[0].h };
 }
 
-GraphicsComponent::GraphicsComponent(std::string path, std::vector<SDL_Rect> frames, int newScale) : frameClips(frames), scale(newScale)
+GraphicsComponent::GraphicsComponent(std::string const & path, std::vector<SDL_Rect> & frames, int newScale) : frameClips(frames), scale(newScale)
 {
 	animated = true;
 	timer = SDL_GetTicks();
@@ -59,7 +59,7 @@ GraphicsComponent::GraphicsComponent(std::string path, std::vector<SDL_Rect> fra
 	dRect = { 0, 0, frameClips[0].w * scale, frameClips[0].h * scale };
 }
 
-GraphicsComponent::GraphicsComponent(std::string path, std::vector<SDL_Rect> frames, bool loop) : frameClips(frames), loop(loop)
+GraphicsComponent::GraphicsComponent(std::string const & path, std::vector<SDL_Rect> & frames, bool loop) : frameClips(frames), loop(loop)
 {
 	animated = true;
 	timer = SDL_GetTicks();
@@ -69,7 +69,7 @@ GraphicsComponent::GraphicsComponent(std::string path, std::vector<SDL_Rect> fra
 	dRect = { 0, 0, frameClips[0].w * scale, frameClips[0].h * scale };
 }
 
-GraphicsComponent::GraphicsComponent(std::string path, std::vector<SDL_Rect> frames, int newScale, bool loop) : frameClips(frames), scale(newScale), loop(loop)
+GraphicsComponent::GraphicsComponent(std::string const & path, std::vector<SDL_Rect> & frames, int newScale, bool loop) : frameClips(frames), scale(newScale), loop(loop)
 {
 	animated = true;
 	timer = SDL_GetTicks();
@@ -81,6 +81,7 @@ GraphicsComponent::GraphicsComponent(std::string path, std::vector<SDL_Rect> fra
 
 GraphicsComponent::GraphicsComponent(SDL_Texture* texture) : spriteTexture(texture)
 {
+	sharingTexture = true;
 	int w, h;
 	SDL_QueryTexture(spriteTexture, NULL, NULL, &w, &h);
 	SDL_SetTextureBlendMode(spriteTexture, SDL_BLENDMODE_BLEND);
@@ -90,12 +91,14 @@ GraphicsComponent::GraphicsComponent(SDL_Texture* texture) : spriteTexture(textu
 
 GraphicsComponent::GraphicsComponent(SDL_Texture* texture, SDL_Rect s, int newScale) : spriteTexture(texture), sRect(s), scale(newScale)
 {
+	sharingTexture = true;
 	SDL_SetTextureBlendMode(spriteTexture, SDL_BLENDMODE_BLEND);
 	dRect = { 0, 0, s.w * scale, s.h * scale };
 }
 
 GraphicsComponent::GraphicsComponent(SDL_Texture* texture, std::vector<SDL_Rect> frames, int customScale) : spriteTexture(texture), frameClips(frames), scale(customScale)
 {
+	sharingTexture = true;
 	animated = true;
 	timer = SDL_GetTicks();
 	SDL_SetTextureBlendMode(spriteTexture, SDL_BLENDMODE_BLEND);
@@ -103,7 +106,7 @@ GraphicsComponent::GraphicsComponent(SDL_Texture* texture, std::vector<SDL_Rect>
 	dRect = { 0, 0, frameClips[0].w * scale, frameClips[0].h * scale };
 }
 
-void GraphicsComponent::update(GameObject& gameObject)
+void GraphicsComponent::update(GameObject & gameObject, float timeStep)
 {
 	if (gameObject.getPositionComponent() != nullptr)
 	{
@@ -149,7 +152,7 @@ void GraphicsComponent::update(GameObject& gameObject)
 	}
 }
 
-SDL_Texture* GraphicsComponent::getTexture()
+SDL_Texture*  GraphicsComponent::getTexture()
 {
 	return spriteTexture;
 }
@@ -161,5 +164,8 @@ SDL_Rect & GraphicsComponent::getdRect()
 
 GraphicsComponent::~GraphicsComponent()
 {
-	SDL_DestroyTexture(spriteTexture);
+	if (!sharingTexture)
+	{
+		SDL_DestroyTexture(spriteTexture);
+	}
 }

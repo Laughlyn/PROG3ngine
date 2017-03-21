@@ -23,13 +23,8 @@ void Level::init()
 		new MovementComponent(),
 		new PlayerGraphicsComponent(textures[0], { 6, 21,  33, 16 }, 4),
 		new PlayerInputComponent(),
-		new PhysicsComponent({ 10, 10, 32 * 4 - 20, 16 * 4 - 20 }, 0, 0, 0));
+		new PhysicsComponent(SDL_Rect({ 10, 10, 32 * 4 - 20, 16 * 4 - 20 }), 0, 0, 0));
 	scene->add(player);
-
-	//Load sounds 
-	Audio* audio = Locator::getAudio();
-	audio->addSound("slimeball.wav");
-	audio->addSound("iceball.wav");
 }
 
 Level::~Level()

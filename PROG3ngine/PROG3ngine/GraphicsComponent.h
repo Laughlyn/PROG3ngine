@@ -10,28 +10,26 @@ class GameObject;
 class GraphicsComponent
 {
 public:
-	GraphicsComponent(std::string path);
-	GraphicsComponent(std::string path, int scale);
-	GraphicsComponent(std::string path, SDL_Rect s);
-	GraphicsComponent(std::string path, SDL_Rect s, int scale);
-	GraphicsComponent(std::string path, std::vector<SDL_Rect>);
-	GraphicsComponent(std::string path, std::vector<SDL_Rect>, int scale);
-	GraphicsComponent(std::string path, std::vector<SDL_Rect>, bool loop);
-	GraphicsComponent(std::string path, std::vector<SDL_Rect>, int scale, bool loop);
+	GraphicsComponent(std::string const & path);
+	GraphicsComponent(std::string const & path, int scale);
+	GraphicsComponent(std::string const & path, SDL_Rect & s);
+	GraphicsComponent(std::string const & path, SDL_Rect & s, int scale);
+	GraphicsComponent(std::string const & path, std::vector<SDL_Rect>&);
+	GraphicsComponent(std::string const & path, std::vector<SDL_Rect>&, int scale);
+	GraphicsComponent(std::string const & path, std::vector<SDL_Rect>&, bool loop);
+	GraphicsComponent(std::string const & path, std::vector<SDL_Rect>&, int scale, bool loop);
 
 	GraphicsComponent(SDL_Texture* texture);
 	GraphicsComponent(SDL_Texture* texture, SDL_Rect s, int scale);
-
 	GraphicsComponent(SDL_Texture* texture, std::vector<SDL_Rect>, int scale);
-
-
-
-	virtual void update(GameObject& gameObject);
+	
+	virtual void update(GameObject & gameObject, float timeStep);
 	SDL_Texture* getTexture();
 	SDL_Rect & getdRect();
-	~GraphicsComponent();
+	virtual ~GraphicsComponent();
 
 protected:
+	bool sharingTexture = false;
 	bool animated = false;
 	bool loop = false;
 	Uint32 timer = 0;

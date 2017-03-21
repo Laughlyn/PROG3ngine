@@ -35,7 +35,7 @@ void GameObject::update(float timeStep)
 		position_->update(*this, timeStep);*/
 
 	if(input_)
-		input_->update(*this);
+		input_->update(*this, timeStep);
 
 	if (movement_)
 		movement_->update(*this, timeStep);
@@ -46,7 +46,7 @@ void GameObject::update(float timeStep)
 	scripts();
 
 	if (graphics_)
-		graphics_->update(*this);
+		graphics_->update(*this, timeStep);
 
 	if (getPositionComponent()->getX() < -100)
 		expire();

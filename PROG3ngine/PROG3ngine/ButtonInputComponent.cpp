@@ -8,7 +8,7 @@
 #include "PlayScene.h"
 #include "Level.h"
 
-void ButtonInputComponent::update(GameObject& gameObject)
+void ButtonInputComponent::update(GameObject& gameObject, float timeStep)
 {
 	SDL_PumpEvents();
 	int x, y;

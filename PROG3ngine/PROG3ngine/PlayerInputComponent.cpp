@@ -9,24 +9,24 @@
 
 static Uint32 lastShot = 0;
 
-void PlayerInputComponent::update(GameObject& gameObject)
+void PlayerInputComponent::update(GameObject& gameObject, float timeStep)
 {
 		SDL_PumpEvents();
 	if (state[SDL_SCANCODE_W])
 	{
-		gameObject.getMovementComponent()->setYVel(gameObject.getMovementComponent()->getYVel() - PLAYER_ACC);
+		gameObject.getMovementComponent()->setYVel(gameObject.getMovementComponent()->getYVel() - PLAYER_ACC * timeStep);
 	}
 	if (state[SDL_SCANCODE_S])
 	{
-		gameObject.getMovementComponent()->setYVel(gameObject.getMovementComponent()->getYVel() + PLAYER_ACC);
+		gameObject.getMovementComponent()->setYVel(gameObject.getMovementComponent()->getYVel() + PLAYER_ACC * timeStep);
 	}
 	if (state[SDL_SCANCODE_D])
 	{
-		gameObject.getMovementComponent()->setXVel(gameObject.getMovementComponent()->getXVel() + PLAYER_ACC);
+		gameObject.getMovementComponent()->setXVel(gameObject.getMovementComponent()->getXVel() + PLAYER_ACC * timeStep);
 	}
 	if (state[SDL_SCANCODE_A])
 	{
-		gameObject.getMovementComponent()->setXVel(gameObject.getMovementComponent()->getXVel() - PLAYER_ACC);
+		gameObject.getMovementComponent()->setXVel(gameObject.getMovementComponent()->getXVel() - PLAYER_ACC * timeStep);
 	}
 	if (state[SDL_SCANCODE_SPACE])
 	{
@@ -38,17 +38,17 @@ void PlayerInputComponent::update(GameObject& gameObject)
 				new PositionComponent(gameObject.getPositionComponent()->getX() + gameObject.getGraphicsComponent()->getdRect().w, gameObject.getPositionComponent()->getY() + gameObject.getGraphicsComponent()->getdRect().h / 2), 
 				new MovementComponent(3000, 0),
 				new GraphicsComponent(std::string("laserBlue01.png"), SDL_Rect({ 0, 0, 54, 9 }), 1),
-				new PhysicsComponent({30, 0, 20, 9}, 1, 1, 0)));
+				new PhysicsComponent(SDL_Rect({30, 0, 20, 9}), 1, 1, 0)));
 			lastShot = SDL_GetTicks();
 
 			//Play sound
 			Audio* audio = Locator::getAudio();
-			audio->playSound(0);
+			audio->playSound(LASER);
 		}
 	}
 	if (state[SDL_SCANCODE_LCTRL])
 	{
-		if (SDL_GetTicks() > lastShot + FIRE_SPEED)
+		if (SDL_GetTicks() > lastShot + FIRE_SPEED * 3)
 		{
 			//Add projectile to scene
 			gameObject.getScene()->add(
@@ -56,12 +56,12 @@ void PlayerInputComponent::update(GameObject& gameObject)
 					new PositionComponent(gameObject.getPositionComponent()->getX() + gameObject.getGraphicsComponent()->getdRect().w, gameObject.getPositionComponent()->getY() + gameObject.getGraphicsComponent()->getdRect().h / 2),
 					new MovementComponent(1000, -1000),
 					new GraphicsComponent(std::string("star2.png"), SDL_Rect({ 0, 0, 16, 16 }), 1),
-					new PhysicsComponent({ 0, 0, 20, 9 }, 1, 1, 1)));
+					new PhysicsComponent(SDL_Rect({ 0, 0, 20, 9 }), 1, 1, 50)));
 			lastShot = SDL_GetTicks();
 
 			//Play sound
 			Audio* audio = Locator::getAudio();
-			audio->playSound(0);
+			audio->playSound(THWUMP);
 		}
 	}
 
@@ -83,7 +83,7 @@ void PlayerInputComponent::update(GameObject& gameObject)
 		gameObject.getMovementComponent()->setXVel(-PLAYER_SPEED);
 	}
 
-	//Friction
+	//Friction, stops ship
 
 	gameObject.getMovementComponent()->setXVel(gameObject.getMovementComponent()->getXVel() * 0.98f);
 	gameObject.getMovementComponent()->setYVel(gameObject.getMovementComponent()->getYVel() * 0.98f);

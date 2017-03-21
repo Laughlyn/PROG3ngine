@@ -5,12 +5,12 @@ class PositionComponent
 {
 public:
 	PositionComponent(float x, float y);
-	void update(GameObject& gameObject, float timeStep);
+	void update(GameObject & gameObject, float timeStep);
 	float getX();
 	float getY();
 	void setX(float);
 	void setY(float);
-	~PositionComponent();
+	virtual ~PositionComponent();
 private:
 	float x;
 	float y;

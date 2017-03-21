@@ -12,7 +12,7 @@ PlayerGraphicsComponent::PlayerGraphicsComponent(SDL_Texture* texture, SDL_Rect 
 
 }
 
-void PlayerGraphicsComponent::update(GameObject& gameObject)
+void PlayerGraphicsComponent::update(GameObject& gameObject, float timeStep)
 {
 	//Change sprite if ship is travelling fast enough up or down
 	if (gameObject.getMovementComponent()->getYVel() > TILT_THRESH)
