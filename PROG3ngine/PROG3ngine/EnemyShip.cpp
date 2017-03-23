@@ -7,13 +7,13 @@ EnemyShip::EnemyShip(PositionComponent* position, MovementComponent* movement, G
 
 }
 
+float angle = 0;
+
 void EnemyShip::scripts()
 {
-	if (getPositionComponent()->getX() < SCREEN_WIDTH / 2)
-	{
-		getMovementComponent()->setXVel(-300);
-		getMovementComponent()->setYVel(100);
-	}
+	//Bob up and down
+	getMovementComponent()->setYVel(std::sin(angle) * 250.f);
+	angle += 0.005f;
 }
 
 void EnemyShip::onExpiration()

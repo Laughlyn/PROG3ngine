@@ -8,7 +8,7 @@ const float PLAYER_SPEED = 700;
 const float TILT_THRESH = 400;
 const int FIRE_SPEED = 150; //Lower is faster
 
-const bool V_SYNC = true;
+const bool V_SYNC = false;
 const bool DEBUG = true;
 
 const int SCREEN_FPS = 144;

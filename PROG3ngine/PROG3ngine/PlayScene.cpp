@@ -54,8 +54,8 @@ void PlayScene::createWave(int size)
 	for (int i = 0; i < size; i++)
 	{
 		EnemyShip* enemy = new EnemyShip(
-			new PositionComponent((float)1600 + 100 * i, (float)200 + 200 * i),
-			new MovementComponent(-300, -100),
+			new PositionComponent((float)1600 + 100 * i, (float)400),
+			new MovementComponent(-300, 0),
 			new GraphicsComponent(textureAtlas, SDL_Rect({ 8, 106,  16, 16 }), 4),
 			new PhysicsComponent(SDL_Rect({ 0, 0, 16 * 4, 16 * 4 }), 1, 1, 0));
 		add(enemy);

@@ -13,5 +13,5 @@ public:
 	void setYVel(float newYVel) { yVel = newYVel; }
 	virtual ~MovementComponent();
 private:
-	float xVel, yVel;
+	float xVel, yVel, yAngle, xAngle, dx, dy;
 };

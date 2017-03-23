@@ -136,6 +136,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
+    <ClCompile Include="Particle.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="PlayerGraphicsComponent.cpp" />
     <ClCompile Include="PlayerInputComponent.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="SDLAudio.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio.h" />
@@ -160,6 +162,7 @@
     <ClInclude Include="Locator.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="MovementComponent.h" />
+    <ClInclude Include="Particle.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PlayerGraphicsComponent.h" />
     <ClInclude Include="PlayerInputComponent.h" />
@@ -170,6 +173,7 @@
     <ClInclude Include="SDLAudio.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
