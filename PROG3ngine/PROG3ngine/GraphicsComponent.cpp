@@ -140,7 +140,8 @@ void GraphicsComponent::update(GameObject & gameObject, float timeStep)
 	else
 	{
 		//Render
-		SDL_RenderCopy(sys.getRenderer(), spriteTexture, &sRect, &dRect);
+		//SDL_RenderCopy(sys.getRenderer(), spriteTexture, &sRect, &dRect);
+		SDL_RenderCopyEx(sys.getRenderer(), spriteTexture, &sRect, &dRect, gameObject.getPositionComponent()->getAngle(), NULL, SDL_RendererFlip());
 	}
 	if (DEBUG)
 	{

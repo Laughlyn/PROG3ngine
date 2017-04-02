@@ -6,5 +6,7 @@ class ButtonInputComponent :
 public:
 	virtual void update(GameObject& gameObject, float timeStep);
 	virtual void clicked();
+private:
+	int x = 0;
+	int y = 0;
 };
-

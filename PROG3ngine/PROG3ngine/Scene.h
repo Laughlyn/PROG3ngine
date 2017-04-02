@@ -5,6 +5,7 @@
 #include "System.h"
 #include "Constants.h"
 #include "GameObject.h"
+#include "Utils.h"
 
 
 class Scene
@@ -15,7 +16,6 @@ public:
 	void add(GameObject* gObject);
 	virtual void run();
 	std::list<GameObject*>const & getGObjects() const;
-	bool checkCollision(const SDL_Rect & a, const SDL_Rect & b);
 	~Scene();
 private:
 	std::list<GameObject*> gObjects;

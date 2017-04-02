@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObject.h"
+#include "VectorMovementComponent.h"
+
 class Projectile :
 	public GameObject
 {

@@ -11,7 +11,7 @@ const int FIRE_SPEED = 150; //Lower is faster
 const bool V_SYNC = false;
 const bool DEBUG = true;
 
-const int SCREEN_FPS = 144;
+const int SCREEN_FPS = 60;
 const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
 
 const float gravity = 9.8f;

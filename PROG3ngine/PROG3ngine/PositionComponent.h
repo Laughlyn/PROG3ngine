@@ -5,14 +5,17 @@ class PositionComponent
 {
 public:
 	PositionComponent(float x, float y);
+	PositionComponent(float x, float y, float a);
 	void update(GameObject & gameObject, float timeStep);
-	float getX();
-	float getY();
-	void setX(float);
-	void setY(float);
+	inline float getX() { return x; }
+	inline float getY() { return y; }
+	inline float getAngle() { return angle; }
+	inline void setX(float newX) { x = newX; }
+	inline void setY(float newY) { y = newY; }
+	inline void setAngle(float newAngle) { angle = newAngle; }
 	virtual ~PositionComponent();
 private:
-	float x;
-	float y;
+	float x = 0;
+	float y = 0;
+	float angle = 0;
 };
-

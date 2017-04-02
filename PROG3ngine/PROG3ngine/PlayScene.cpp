@@ -11,8 +11,9 @@
 #include <random>
 #include "EnemyShip.h"
 #include <random>
+#include "EnemyShipInputComponent.h"
 
-Uint32 waveTime = -7000;
+Uint32 waveTime = -1000;
 Uint32 starTime = 0;
 
 PlayScene::PlayScene()
@@ -36,9 +37,9 @@ PlayScene::PlayScene()
 
 void PlayScene::scripts()
 {
-	if (SDL_GetTicks() > waveTime + 7000)
+	if (SDL_GetTicks() > waveTime + 1000)
 	{
-		createWave(5);
+		createWave(1);
 		waveTime = SDL_GetTicks();
 	}
 	if (SDL_GetTicks() > starTime + 500)
@@ -55,8 +56,9 @@ void PlayScene::createWave(int size)
 	{
 		EnemyShip* enemy = new EnemyShip(
 			new PositionComponent((float)1600 + 100 * i, (float)400),
-			new MovementComponent(-300, 0),
+			new MovementComponent(0, 0),
 			new GraphicsComponent(textureAtlas, SDL_Rect({ 8, 106,  16, 16 }), 4),
+			new EnemyShipInputComponent(),
 			new PhysicsComponent(SDL_Rect({ 0, 0, 16 * 4, 16 * 4 }), 1, 1, 0));
 		add(enemy);
 	}
@@ -81,8 +83,6 @@ void PlayScene::createStars()
 			new GraphicsComponent(texturePtr, SDL_Rect({ 0, 0,  3, 4 }), 1)));
 	}
 }
-
-
 
 PlayScene::~PlayScene()
 {

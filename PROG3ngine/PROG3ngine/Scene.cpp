@@ -75,7 +75,7 @@ void Scene::run()
 				{
 					if (gO != gO2 && gO->getPhysicsComponent() != nullptr && gO2->getPhysicsComponent() != nullptr)
 					{
-						if (checkCollision(gO->getPhysicsComponent()->getHitBox(), gO2->getPhysicsComponent()->getHitBox()))
+						if (rectRectCollision(gO->getPhysicsComponent()->getHitBox(), gO2->getPhysicsComponent()->getHitBox()))
 						{
 							SDL_Log("Collision!");
 							gO->getPhysicsComponent()->collision(*gO, *gO2);
@@ -88,7 +88,6 @@ void Scene::run()
 
 		//Remove expired GameObjects from Scene
 		removeExpired();
-
 
 		scripts();
 
@@ -113,44 +112,6 @@ void Scene::run()
 std::list<GameObject*> const & Scene::getGObjects() const
 {
 	return gObjects;
-}
-
-//True if rects are colliding
-bool Scene::checkCollision(const SDL_Rect& a, const SDL_Rect& b)
-{
-	int leftA, rightA, topA, bottomA;
-	leftA = a.x;
-	rightA = a.x + a.w;
-	topA = a.y;
-	bottomA = a.y + a.h;
-
-	int leftB, rightB, topB, bottomB;
-	leftB = b.x;
-	rightB = b.x + b.w;
-	topB = b.y;
-	bottomB = b.y + b.h;
-
-	if (bottomA <= topB)
-	{
-		return false;
-	}
-
-	if (topA >= bottomB)
-	{
-		return false;
-	}
-
-	if (rightA <= leftB)
-	{
-		return false;
-	}
-
-	if (leftA >= rightB)
-	{
-		return false;
-	}
-
-	return true;
 }
 
 void Scene::removeExpired()

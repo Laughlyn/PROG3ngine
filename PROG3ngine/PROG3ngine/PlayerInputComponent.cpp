@@ -6,6 +6,8 @@
 #include <SDL.h>
 #include <thread>
 #include "MovementComponent.h"
+#include "VectorMovementComponent.h"
+#include "Utils.h"
 
 static Uint32 lastShot = 0;
 
@@ -36,7 +38,7 @@ void PlayerInputComponent::update(GameObject& gameObject, float timeStep)
 			gameObject.getScene()->add(
 				new Projectile(
 				new PositionComponent(gameObject.getPositionComponent()->getX() + gameObject.getGraphicsComponent()->getdRect().w, gameObject.getPositionComponent()->getY() + gameObject.getGraphicsComponent()->getdRect().h / 2), 
-				new MovementComponent(3000, 0),
+				new VectorMovementComponent(3000, PI/2),
 				new GraphicsComponent(std::string("laserBlue01.png"), SDL_Rect({ 0, 0, 54, 9 }), 1),
 				new PhysicsComponent(SDL_Rect({30, 0, 20, 9}), 1, 1, 0)));
 			lastShot = SDL_GetTicks();
@@ -66,7 +68,12 @@ void PlayerInputComponent::update(GameObject& gameObject, float timeStep)
 	}
 
 	//Cap player speed
-	if (gameObject.getMovementComponent()->getYVel() > PLAYER_SPEED)
+	gameObject.getMovementComponent()->setYVel(clamp(gameObject.getMovementComponent()->getYVel(), -PLAYER_SPEED, PLAYER_SPEED));
+
+	gameObject.getMovementComponent()->setXVel(clamp(gameObject.getMovementComponent()->getXVel(), -PLAYER_SPEED, PLAYER_SPEED));
+
+
+	/*if (gameObject.getMovementComponent()->getYVel() > PLAYER_SPEED)
 	{
 		gameObject.getMovementComponent()->setYVel(PLAYER_SPEED);
 	}
@@ -81,30 +88,36 @@ void PlayerInputComponent::update(GameObject& gameObject, float timeStep)
 	if (gameObject.getMovementComponent()->getXVel() < -PLAYER_SPEED)
 	{
 		gameObject.getMovementComponent()->setXVel(-PLAYER_SPEED);
-	}
+	}*/
 
 	//Friction, stops ship
 
 	gameObject.getMovementComponent()->setXVel(gameObject.getMovementComponent()->getXVel() * 0.98f);
 	gameObject.getMovementComponent()->setYVel(gameObject.getMovementComponent()->getYVel() * 0.98f);
 
-	//Keep player on screen
-	if (gameObject.getPositionComponent()->getX() < 0)
-	{
-		gameObject.getPositionComponent()->setX(0);
-	}
-	if (gameObject.getPositionComponent()->getX() > SCREEN_WIDTH - (gameObject.getGraphicsComponent()->getdRect().w))
-	{
-		gameObject.getPositionComponent()->setX((float)(SCREEN_WIDTH - (gameObject.getGraphicsComponent()->getdRect().w)));
-	}
+	////Keep player on screen
+	//if (gameObject.getPositionComponent()->getX() < 0)
+	//{
+	//	gameObject.getPositionComponent()->setX(0);
+	//}
+	//if (gameObject.getPositionComponent()->getX() > SCREEN_WIDTH - (gameObject.getGraphicsComponent()->getdRect().w))
+	//{
+	//	gameObject.getPositionComponent()->setX((float)(SCREEN_WIDTH - (gameObject.getGraphicsComponent()->getdRect().w)));
+	//}
 
-	//Keep player on screen
-	if (gameObject.getPositionComponent()->getY() < 0)
-	{
-		gameObject.getPositionComponent()->setY(0);
-	}
-	if (gameObject.getPositionComponent()->getY() > SCREEN_HEIGHT - (gameObject.getGraphicsComponent()->getdRect().h))
-	{
-		gameObject.getPositionComponent()->setY((float)(SCREEN_HEIGHT - (gameObject.getGraphicsComponent()->getdRect().h)));
-	}
+	////Keep player on screen
+	//if (gameObject.getPositionComponent()->getY() < 0)
+	//{
+	//	gameObject.getPositionComponent()->setY(0);
+	//}
+	//if (gameObject.getPositionComponent()->getY() > SCREEN_HEIGHT - (gameObject.getGraphicsComponent()->getdRect().h))
+	//{
+	//	gameObject.getPositionComponent()->setY((float)(SCREEN_HEIGHT - (gameObject.getGraphicsComponent()->getdRect().h)));
+	//}
+
+
+	gameObject.getPositionComponent()->setY(clamp(gameObject.getPositionComponent()->getY(), 0.f, (float)SCREEN_HEIGHT - (gameObject.getGraphicsComponent()->getdRect().h)));
+
+	gameObject.getPositionComponent()->setX(clamp(gameObject.getPositionComponent()->getX(), 0.f, (float)SCREEN_WIDTH - (gameObject.getGraphicsComponent()->getdRect().w)));
+
 }

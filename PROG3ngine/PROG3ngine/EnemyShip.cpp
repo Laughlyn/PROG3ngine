@@ -7,13 +7,13 @@ EnemyShip::EnemyShip(PositionComponent* position, MovementComponent* movement, G
 
 }
 
-float angle = 0;
+EnemyShip::EnemyShip(PositionComponent* position, MovementComponent* movement, GraphicsComponent* graphics, InputComponent* input, PhysicsComponent* physics) : GameObject(position, movement, graphics, input, physics)
+{
+
+}
 
 void EnemyShip::scripts()
 {
-	//Bob up and down
-	getMovementComponent()->setYVel(std::sin(angle) * 250.f);
-	angle += 0.005f;
 }
 
 void EnemyShip::onExpiration()

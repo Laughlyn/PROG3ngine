@@ -1,7 +1,6 @@
 #pragma once
 #include "InputComponent.h"
 #include <SDL.h>
-
 #include <SDL_image.h>
 #include <stdio.h>
 #include <string>
