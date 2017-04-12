@@ -1,4 +1,5 @@
-#pragma once
+#ifndef POSITIONCOMPONENT_H
+#define POSITIONCOMPONENT_H
 #include "GameObject.h"
 
 class PositionComponent
@@ -19,3 +20,5 @@ private:
 	float y = 0;
 	float angle = 0;
 };
+
+#endif

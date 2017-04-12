@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BUTTONINPUTCOMPONENT_H
+#define BUTTONINPUTCOMPONENT_H
+
 #include "InputComponent.h"
 class ButtonInputComponent :
 	public InputComponent
@@ -10,3 +12,5 @@ private:
 	int x = 0;
 	int y = 0;
 };
+
+#endif

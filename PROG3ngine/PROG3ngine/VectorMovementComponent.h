@@ -20,6 +20,6 @@ public:
 	inline void setSpeed(float speed) { vx = cos(direction) * speed; vy = sin(direction) * speed; }
 	inline float getDirection() { return atan2(vy, vx); }
 	inline void setDirection(float d) { float speed = getSpeed(); vx = cos(d) * speed; vy = sin(d) * speed; }
-	inline void accelerate(float ax, float ay) { vx += ax; vy += ay; }
+	inline void accelerate(float ax, float ay) override { vx += ax; vy += ay; }
 };
 #endif

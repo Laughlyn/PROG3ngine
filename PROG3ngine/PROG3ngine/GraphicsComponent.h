@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GRAPHICSCOMPONENT_H
+#define GRAPHICSCOMPONENT_H
+
 #include "GameObject.h"
 #include <SDL_image.h>
 #include <string>
@@ -40,3 +42,4 @@ protected:
 	SDL_Rect sRect = { 0, 0, 0, 0 };
 	SDL_Rect dRect = { 0, 0, 0, 0 };
 };
+#endif

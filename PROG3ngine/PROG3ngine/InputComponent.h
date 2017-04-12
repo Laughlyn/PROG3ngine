@@ -1,4 +1,6 @@
-#pragma once
+#ifndef INPUTCOMPONENT_H
+#define INPUTCOMPONENT_H
+
 #include "GameObject.h"
 
 class GameObject;
@@ -10,3 +12,4 @@ public:
 	virtual void update(GameObject & gameObject, float timeStep) = 0;
 };
 
+#endif

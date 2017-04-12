@@ -38,7 +38,7 @@ void PlayerInputComponent::update(GameObject& gameObject, float timeStep)
 			gameObject.getScene()->add(
 				new Projectile(
 				new PositionComponent(gameObject.getPositionComponent()->getX() + gameObject.getGraphicsComponent()->getdRect().w, gameObject.getPositionComponent()->getY() + gameObject.getGraphicsComponent()->getdRect().h / 2), 
-				new VectorMovementComponent(3000, PI/2),
+				new VectorMovementComponent(3000, 0),
 				new GraphicsComponent(std::string("laserBlue01.png"), SDL_Rect({ 0, 0, 54, 9 }), 1),
 				new PhysicsComponent(SDL_Rect({30, 0, 20, 9}), 1, 1, 0)));
 			lastShot = SDL_GetTicks();
@@ -56,7 +56,7 @@ void PlayerInputComponent::update(GameObject& gameObject, float timeStep)
 			gameObject.getScene()->add(
 				new Projectile(
 					new PositionComponent(gameObject.getPositionComponent()->getX() + gameObject.getGraphicsComponent()->getdRect().w, gameObject.getPositionComponent()->getY() + gameObject.getGraphicsComponent()->getdRect().h / 2),
-					new MovementComponent(1000, -1000),
+					new VectorMovementComponent(1500, 11 * PI / 6),
 					new GraphicsComponent(std::string("star2.png"), SDL_Rect({ 0, 0, 16, 16 }), 1),
 					new PhysicsComponent(SDL_Rect({ 0, 0, 20, 9 }), 1, 1, 50)));
 			lastShot = SDL_GetTicks();

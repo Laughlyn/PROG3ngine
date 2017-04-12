@@ -14,9 +14,9 @@ VectorMovementComponent::VectorMovementComponent(float speed, float direction)
 
 void VectorMovementComponent::update(GameObject & gameObject, float timeStep)
 {
-	gameObject.getPositionComponent()->setY(gameObject.getPositionComponent()->getY() + vx * timeStep);
+	gameObject.getPositionComponent()->setX(gameObject.getPositionComponent()->getX() + vx * timeStep);
 
-	gameObject.getPositionComponent()->setX(gameObject.getPositionComponent()->getX() + vy * timeStep);
+	gameObject.getPositionComponent()->setY(gameObject.getPositionComponent()->getY() + vy * timeStep);
 }
 
 VectorMovementComponent::~VectorMovementComponent()

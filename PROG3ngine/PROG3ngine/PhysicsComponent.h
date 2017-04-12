@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PHYSICSCOMPONENT_H
+#define PHYSICSCOMPONENT_H
+
 #include "GameObject.h"
 
 class PhysicsComponent
@@ -14,3 +16,4 @@ private:
 	SDL_Rect hitBox = { 0,0,0,0 };
 };
 
+#endif

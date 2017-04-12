@@ -1,4 +1,6 @@
-#pragma once
+#ifndef TIMER_H
+#define TIMER_H
+
 #include <SDL.h>
 
 //The application based timer
@@ -32,3 +34,4 @@ private:
 	bool mPaused;
 	bool mStarted;
 };
+#endif

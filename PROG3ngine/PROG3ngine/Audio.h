@@ -1,4 +1,6 @@
-#pragma once
+#ifndef AUDIO_H
+#define AUDIO_H
+
 #include <string>
 
 class Audio
@@ -12,3 +14,4 @@ public:
 	virtual void addSound(std::string path) = 0;
 	~Audio();
 };
+#endif

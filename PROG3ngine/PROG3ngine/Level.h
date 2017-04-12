@@ -13,4 +13,3 @@ private:
 	virtual void init();
 	Scene* scene;
 };
-
